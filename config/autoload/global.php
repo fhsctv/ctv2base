@@ -11,6 +11,19 @@
  * file.
  */
 
+$db = array(
+      'charset'  => 'LATIN-1',
+      'driver' => 'Pdo',
+      'dsn'    => 'pgsql:host=localhost;port=5432;dbname=ctv',
+);
+
+$service_manager = array(
+    'factories' => array(
+        'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+    ),
+);
+
 return array(
-    // ...
+    'db'              => $db,
+    'service_manager' => $service_manager,
 );
