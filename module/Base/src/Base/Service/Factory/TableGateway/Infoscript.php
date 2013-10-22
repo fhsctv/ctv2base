@@ -9,7 +9,7 @@ use Base\Constants as C;
 
 use Base\Model\Hydrator\Infoscript as Hydrator;
 use Base\Model\Entity\Infoscript   as InfoscriptEntity;
-use Base\Model\Entity\Url          as UrlEntity;
+//use Base\Model\Entity\Url          as UrlEntity;
 
 class Infoscript extends AbstractFactory {
     
@@ -22,7 +22,7 @@ class Infoscript extends AbstractFactory {
 
         parent::createService($serviceLocator);
 
-        $this->setEntity(new InfoscriptEntity(new UrlEntity()));
+        $this->setEntity(new InfoscriptEntity());
         $this->setHydrator(new Hydrator());
         $this->setResultSetPrototype(new HydratingResultSet($this->getHydrator(), $this->getEntity()));
 

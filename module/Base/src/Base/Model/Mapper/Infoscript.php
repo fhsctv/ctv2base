@@ -5,50 +5,79 @@ namespace Base\Model\Mapper;
 use Base\Model\Entity\Infoscript as Entity;
 
 class Infoscript {
-    
+
     protected $tableInfoscript;
     protected $tableUrl;
-    
-    
+
+    protected $connection;
+
+
+
+
     public function fetchAll(){
-        
-        return $this->getTableInfoscript()->fetchAll();
+
+        $infoscriptResultSet = $this->getTableInfoscript()->fetchAll();
+        $infoscriptResultSet->buffer();
+
+        foreach ($infoscriptResultSet as $infoscript){
+
+            $infoscript->setUrl($this->getTableUrl()->get($infoscript->getUrlId()));
+        }
+
+        return $infoscriptResultSet;
     }
-    
+
     public function get($id) {
-        
-        return $this->getTableInfoscript()->get( (int) $id);
+
+        $infoscript = $this->getTableInfoscript()->get( (int) $id);
+        $infoscript->setUrl($this->getTableUrl()->get($infoscript->getUrlId()));
+
+        return $infoscript;
     }
 
     public function save(Entity $infoscript){
-        
-        $connection = $this->getTableInfoscript()->getTableGateway()->getAdapter()->getDriver()->getConnection();
 
-        $connection->beginTransaction();
-        try{
-        
+        $this->getConnection()->beginTransaction();
+        try {
+
             $urlId = $this->getTableUrl()->save($infoscript->getUrl());
 
             $infoscript->setUrlId($urlId);
+            $infoscript->getUrl()->setId($urlId);
 
             $id = $this->getTableInfoscript()->save($infoscript);
-            
-            $connection->commit();
-            
+            $infoscript->setId($id);
+
+            $this->getConnection()->commit();
+
             return $id;
-            
+
         }
-         catch (\Exception $e){
-             
-             $connection->rollback();
-             
-             throw $e;
-             
-         }
-        
+        catch (\Exception $e){
+
+            $this->getConnection()->rollback();
+            throw $e;
+        }
+
     }
 
+    public function delete(Entity $infoscript){
 
+        $this->getConnection()->beginTransaction();
+
+        try{
+
+            $this->getTableInfoscript()->delete($infoscript->getId());
+            $this->getTableUrl()->delete($infoscript->getUrl()->getId());
+
+            $this->getConnection()->commit();
+        }
+        catch (\Exception $e){
+
+            $this->getConnection()->rollback();
+            throw $e;
+        }
+    }
 
 
 
@@ -70,6 +99,12 @@ class Infoscript {
         return $this;
     }
 
+    public function getConnection() {
+        return $this->connection;
+    }
 
-    
+    public function setConnection($connection) {
+        $this->connection = $connection;
+        return $this;
+    }
 }

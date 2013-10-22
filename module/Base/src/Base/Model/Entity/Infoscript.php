@@ -49,6 +49,9 @@ class Infoscript extends AUrl {
         }
         
         $this->urlId = (int) $urlId;
+        
+        $this->getUrl()->setId($urlId); //teile neue Id der Url- Abhängigkeit mit
+        
         return $this;
     }
 

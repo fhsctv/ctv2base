@@ -153,16 +153,16 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
      * Testet ob die Url seine Abhängigkeit beim setzen gleich mitgeteilt wird.
      * Die Url soll wissen, zu welchem Infoscript sie gehört.
      */
-    public function testSetUrlSetsInfoscriptAsDependency(){
-        
-        $url = $this->sm->get(C::SERVICE_ENTITY_URL);
-        
-        $this->entity->setUrl($url);
-        
-        $this->assertSame($this->entity, $this->entity->getUrl()->getDependency());
-        $this->assertInstanceOf('Base\Model\Entity\Infoscript', $this->entity->getUrl()->getDependency());
-        
-    }
+//    public function testSetUrlSetsInfoscriptAsDependency(){
+//        
+//        $url = $this->sm->get(C::SERVICE_ENTITY_URL);
+//        
+//        $this->entity->setUrl($url);
+//        
+//        $this->assertSame($this->entity, $this->entity->getUrl()->getDependency());
+//        $this->assertInstanceOf('Base\Model\Entity\Infoscript', $this->entity->getUrl()->getDependency());
+//        
+//    }
     
     /**
      * Testet, ob das Infoscript Schnittststellen zum Verwalten seiner Url

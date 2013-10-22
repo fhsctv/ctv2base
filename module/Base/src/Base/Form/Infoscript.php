@@ -46,22 +46,22 @@ class Infoscript extends Form\Form {
         
     }
 
-    public function getData($flag = null) {
-        $obj = parent::getData($flag);
-        $obj->getUrl()->setDependency($obj);
-        
-        return $obj;
-    }
+//    public function getData($flag = null) {
+//        $obj = parent::getData($flag);
+//        $obj->getUrl()->setDependency($obj);
+//        
+//        return $obj;
+//    }
     
     
     public function getId() {
 
         if(empty($this->id)){
 
-            $id = new Form\Element\Text(C::INFO_ID);
-            $id->setLabelAttributes(array('class' => 'control-label'));
-            $id->setAttribute('class', 'input-xlarge');
-            $id->setLabel(self::LABEL_ID);
+            $id = new Form\Element\Hidden(C::INFO_ID);
+//            $id->setLabelAttributes(array('class' => 'control-label'));
+//            $id->setAttribute('class', 'input-xlarge');
+//            $id->setLabel(self::LABEL_ID);
 
             $this->setId($id);
         }
@@ -79,10 +79,10 @@ class Infoscript extends Form\Form {
 
         if(empty($this->urlId)){
 
-            $urlId = new Form\Element\Text(C::INFO_URL_ID);
-            $urlId->setLabelAttributes(array('class' => 'control-label'));
-            $urlId->setLabel(self::LABEL_URL_ID);
-            $urlId->setAttribute('class', 'input-xlarge');
+            $urlId = new Form\Element\Hidden(C::INFO_URL_ID);
+//            $urlId->setLabelAttributes(array('class' => 'control-label'));
+//            $urlId->setLabel(self::LABEL_URL_ID);
+//            $urlId->setAttribute('class', 'input-xlarge');
 
             $this->setUrlId($urlId);
         }
@@ -101,6 +101,10 @@ class Infoscript extends Form\Form {
         if(empty($this->userId)){
 
             $userId = new Form\Element\Text(C::INFO_USER_ID);
+            
+            //TODO aus Datenbank holen, Tabelle FH
+//            $userId->setValueOptions(array(1 => 'Administrator'));
+            
             $userId->setLabel(self::LABEL_USER_ID);
             $userId->setLabelAttributes(array('class' => 'control-label'));
             $userId->setAttribute('class', 'input-xlarge');

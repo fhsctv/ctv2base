@@ -39,7 +39,7 @@ class Url extends Form\Fieldset {
         
         if(empty($this->adresse)){
             
-            $adresse = new Form\Element\Text(C::URL_ADRESSE);
+            $adresse = new Form\Element\Url(C::URL_ADRESSE);
             $adresse->setLabel(self::LABEL_ADRESS);
             $adresse->setLabelAttributes(array('class' => 'control-label'));
             $adresse->setAttribute('class', 'input-xlarge');

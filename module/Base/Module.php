@@ -51,6 +51,9 @@ class Module
                 C::SERVICE_TABLE_INFOSCRIPT          => '\Base\Service\Factory\Table\Infoscript',
                 C::SERVICE_TABLE_URL                 => '\Base\Service\Factory\Table\Url',
                 
+                C::SERVICE_MAPPER_INFOSCRIPT         => '\Base\Service\Factory\Mapper\Infoscript',
+                
+                C::SERVICE_INFOSCRIPT               => '\Base\Service\Factory\Infoscript',
             ),
             'invokables' => array (
                 
@@ -58,9 +61,12 @@ class Module
                 C::SERVICE_ENTITY_URL                => '\Base\Model\Entity\Url',
                 
                 C::SERVICE_FORM_INFOSCRIPT           => '\Base\Form\Infoscript',
+                C::SERVICE_FORM_DELETE               => '\Base\Form\Delete',
                 
                 C::SERVICE_HYDRATOR_MODEL_INFOSCRIPT => '\Base\Model\Hydrator\Infoscript',
                 C::SERVICE_HYDRATOR_MODEL_URL        => '\Base\Model\Hydrator\Url',
+                
+                
             ),
             'shared' => array(
                 
@@ -69,6 +75,7 @@ class Module
                 
                 
                 C::SERVICE_FORM_INFOSCRIPT => false,
+                C::SERVICE_FORM_DELETE     => false,
                 
             )
             

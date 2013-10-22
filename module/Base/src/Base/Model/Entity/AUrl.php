@@ -27,7 +27,7 @@ abstract class AUrl {
     public function setUrl(Url $url) {
         
         $this->url = $url;
-        $this->getUrl()->setDependency($this);
+//        $this->getUrl()->setDependency($this);
         
         return $this;
     }

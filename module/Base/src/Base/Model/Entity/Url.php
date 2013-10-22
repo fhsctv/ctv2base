@@ -4,14 +4,30 @@ namespace Base\Model\Entity;
 
 class Url {
 
+    protected $id;
     protected $adresse;
     protected $start;
     protected $ende;
     protected $aktiv;
 
-    protected $dependency;
+//    protected $dependency;
 
     
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        
+        if(!is_numeric($id)){    
+            throw new \InvalidArgumentException("Die Id muss Integer oder ein numerischer String sein");
+        }
+        
+        $this->id = $id;
+        return $this;
+    }
+
+        
     public function getAdresse() {
         return $this->adresse;
     }
@@ -54,14 +70,14 @@ class Url {
     
     
     
-    public function getDependency() {
-        return $this->dependency;
-    }
-
-    public function setDependency(AUrl $dependency) {
-        $this->dependency = $dependency;
-        return $this;
-    }
+//    public function getDependency() {
+//        return $this->dependency;
+//    }
+//
+//    public function setDependency(AUrl $dependency) {
+//        $this->dependency = $dependency;
+//        return $this;
+//    }
 
 
 }

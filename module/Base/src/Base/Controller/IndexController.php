@@ -78,13 +78,19 @@ class IndexController extends AbstractActionController {
     public function fetchAllAction(){
         
         
-        $table = $this->getServiceLocator()->get('Base\Table\Infoscript');
+        $mapper = new InfMapper();
+        $mapper->setTableInfoscript($this->getServiceLocator()->get(C::SERVICE_TABLE_INFOSCRIPT));
+        $mapper->setTableUrl($this->getServiceLocator()->get(C::SERVICE_TABLE_URL));
 
         
-        $resSet = $table->fetchAll();
         
+        $resSet = $mapper->get(6);
         
-        var_dump($resSet->toArray());
+            var_dump($resSet);
+
+//        foreach ($resSet as $r){
+//            
+//        }
         
         
         

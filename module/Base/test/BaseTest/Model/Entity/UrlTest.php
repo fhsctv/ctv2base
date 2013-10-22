@@ -38,26 +38,29 @@ class UrlTest extends \PHPUnit_Framework_TestCase {
     
     public function testGetterSetter(){
         
-        $infoscript = $this->sm->get('Base\Model\Entity\Infoscript');
+//        $infoscript = $this->sm->get('Base\Model\Entity\Infoscript');
         
+        
+        $this->entity->setId(231);
         $this->entity->setStart('2013-10-21');
         $this->entity->setEnde('2013-10-21');
         $this->entity->setAdresse('http://debug.loc');
         $this->entity->setAktiv(1);
         
-        $this->entity->setDependency($infoscript);
+//        $this->entity->setDependency($infoscript);
         
+        $this->assertEquals(231, $this->entity->getId());
         $this->assertEquals('2013-10-21', $this->entity->getStart());
         $this->assertEquals('2013-10-21', $this->entity->getEnde());
         $this->assertEquals('http://debug.loc', $this->entity->getAdresse());
         $this->assertEquals(1, $this->entity->getAktiv());
         
         
-        $this->assertEquals($infoscript, $this->entity->getDependency());
-        $this->assertSame($infoscript, $this->entity->getDependency());
+//        $this->assertEquals($infoscript, $this->entity->getDependency());
+//        $this->assertSame($infoscript, $this->entity->getDependency());
         
-        $infoscript->setId(2413);
-        $this->assertEquals(2413, $this->entity->getDependency()->getId());
+//        $infoscript->setId(2413);
+//        $this->assertEquals(2413, $this->entity->getDependency()->getId());
     }
     
 }
