@@ -30,7 +30,7 @@ class Anzeige {
         
         $anzeige = $form->getData();
         
-        if(!empty($anzeige->getUrlId())){
+        if($anzeige->getUrlId()){
             $anzeige->getUrl()->setId($anzeige->getUrlId()); //sollte die URL- Id geändert worden sein, muss dies dem URL- Objekt mitgeteilt werden
         }
         return $anzeige;

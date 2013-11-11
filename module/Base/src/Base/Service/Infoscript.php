@@ -30,7 +30,7 @@ class Infoscript {
         
         $infoscript = $form->getData();
         
-        if(!empty($infoscript->getUrlId())){
+        if($infoscript->getUrlId()){
             $infoscript->getUrl()->setId($infoscript->getUrlId()); //sollte die URL- Id geändert worden sein, muss dies dem URL- Objekt mitgeteilt werden
         }
         return $infoscript;
