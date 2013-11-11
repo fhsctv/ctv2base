@@ -31,7 +31,7 @@ class Infoscript {
         $infoscript = $form->getData();
         
         if($infoscript->getUrlId()){
-            $infoscript->getUrl()->setId($infoscript->getUrlId()); //sollte die URL- Id geändert worden sein, muss dies dem URL- Objekt mitgeteilt werden
+            $infoscript->getUrl()->setId($infoscript->getUrlId()); //sollte die URL- Id geändert worden sein, muss dies dem URL- Objekt mitgeteilt werden (darf im Regelfall nicht passieren, da die url id im formular versteckt sein sollte)
         }
         return $infoscript;
     }
