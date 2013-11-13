@@ -15,11 +15,12 @@ class IndexController extends AbstractActionController {
 
         $infoscript = $this->getServiceLocator()->get(C::SERVICE_ENTITY_INFOSCRIPT);
         
-        $infoscript->setId(1)->setUrlId(2)->setUserId(3);
-        $infoscript->getUrl()->setAdresse('http://')->setStart('2013-01-01')
-                ->setEnde('2013-02-03')->setAktiv(0);
+        $infoscript->setInseratId(1)->setUserId(3)->setUrl('http://www.debug.form.loc')
+                   ->setStart('2013-01-01')->setEnde('2013-02-03')->setAktiv(0)
+                   ->addBildschirm(1);
 
 
+           
         
         $form = $this->getServiceLocator()->get(C::SERVICE_FORM_INFOSCRIPT);
         $form->bind($infoscript);
@@ -42,12 +43,16 @@ class IndexController extends AbstractActionController {
         );
     }
     
-    public function tablegwAction(){
+    public function saveInseratAction(){
         
         
-        $resultSet = $this->getServiceLocator()->get(C::SERVICE_TABLE_INFOSCRIPT)->fetchAll();
+        $infoscript = $this->getServiceLocator()->get(C::SERVICE_ENTITY_INFOSCRIPT);
+        $infoscript->setStart('2099-12-12')->setEnde('3000-01-01')->setUrl('http://inserat.debug5.loc')->setAktiv(1);
+        $infoscript->setUserId(1);
+        $infoscript->addBildschirm(4);
         
-        var_dump($resultSet->toArray());
+        $mapper = $this->getServiceLocator()->get(C::SERVICE_MAPPER_INFOSCRIPT);
+        $mapper->save($infoscript);
         
     }
     
@@ -77,21 +82,29 @@ class IndexController extends AbstractActionController {
     
     public function fetchAllAction(){
         
-        
-        $mapper = new InfMapper();
-        $mapper->setTableInfoscript($this->getServiceLocator()->get(C::SERVICE_TABLE_INFOSCRIPT));
-        $mapper->setTableUrl($this->getServiceLocator()->get(C::SERVICE_TABLE_URL));
 
+        $infoscriptMapper    = $this->getServiceLocator()->get(C::SERVICE_MAPPER_INFOSCRIPT);
         
+        $resSet = $infoscriptMapper->fetchAll();
         
-        $resSet = $mapper->get(6);
-        
-            var_dump($resSet);
 
-//        foreach ($resSet as $r){
-//            
-//        }
+        foreach ($resSet as $r){
+            var_dump($r);  
+        }
         
+        
+    }
+    
+    public function bildschirmLinkerAction(){
+        
+        $table = $this->getServiceLocator()->get(C::SERVICE_TABLE_INSERATBILDSCHIRMLINKER);
+        
+        
+        $resultSet = $table->getByInseratId(1);
+        
+        foreach ($resultSet as $r) {
+            var_dump($r);
+        }
         
         
         

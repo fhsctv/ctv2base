@@ -45,45 +45,50 @@ class Module
         return array(
             'factories' => array(
                 
+                // ----------------------------------------------- TableGateways
+                C::SERVICE_TABLEGATEWAY_INSERATBILDSCHIRMLINKER      => '\Base\Service\Factory\TableGateway\InseratBildschirmLinker',
+                C::SERVICE_TABLEGATEWAY_INSERAT      => '\Base\Service\Factory\TableGateway\Inserat',
                 C::SERVICE_TABLEGATEWAY_INFOSCRIPT   => '\Base\Service\Factory\TableGateway\Infoscript',
-                C::SERVICE_TABLEGATEWAY_ANZEIGE      => '\Base\Service\Factory\TableGateway\Anzeige',
-                C::SERVICE_TABLEGATEWAY_URL          => '\Base\Service\Factory\TableGateway\Url',
                 
+                
+                // ------------------------------------------------------ Tables
+                C::SERVICE_TABLE_INSERAT             => '\Base\Service\Factory\Table\Inserat',
+                C::SERVICE_TABLE_INSERATBILDSCHIRMLINKER             => '\Base\Service\Factory\Table\InseratBildschirmLinker',
                 C::SERVICE_TABLE_INFOSCRIPT          => '\Base\Service\Factory\Table\Infoscript',
-                C::SERVICE_TABLE_ANZEIGE             => '\Base\Service\Factory\Table\Anzeige',
-                C::SERVICE_TABLE_URL                 => '\Base\Service\Factory\Table\Url',
                 
+                
+                // ----------------------------------------------------- Mappers
                 C::SERVICE_MAPPER_INFOSCRIPT         => '\Base\Service\Factory\Mapper\Infoscript',
-                C::SERVICE_MAPPER_ANZEIGE            => '\Base\Service\Factory\Mapper\Anzeige',
                 
+                
+                // ----------------------------------------------------- Services
                 C::SERVICE_INFOSCRIPT               => '\Base\Service\Factory\Infoscript',
-                C::SERVICE_ANZEIGE                  => '\Base\Service\Factory\Anzeige',
             ),
             'invokables' => array (
                 
+                // ---------------------------------------------------- Entities
+                C::SERVICE_ENTITY_INSERAT            => '\Base\Model\Entity\Inserat',
                 C::SERVICE_ENTITY_INFOSCRIPT         => '\Base\Model\Entity\Infoscript',
-                C::SERVICE_ENTITY_ANZEIGE            => '\Base\Model\Entity\Anzeige',
-                C::SERVICE_ENTITY_URL                => '\Base\Model\Entity\Url',
                 
+                // ------------------------------------------------------- Forms
                 C::SERVICE_FORM_INFOSCRIPT           => '\Base\Form\Infoscript',
-                C::SERVICE_FORM_ANZEIGE              => '\Base\Form\Anzeige',
                 C::SERVICE_FORM_DELETE               => '\Base\Form\Delete',
                 
+                // ------------------------------------------------- DbHydrators
+                C::SERVICE_HYDRATOR_MODEL_INSERAT    => '\Base\Model\Hydrator\Inserat',
                 C::SERVICE_HYDRATOR_MODEL_INFOSCRIPT => '\Base\Model\Hydrator\Infoscript',
-                C::SERVICE_HYDRATOR_MODEL_ANZEIGE    => '\Base\Model\Hydrator\Anzeige',
-                C::SERVICE_HYDRATOR_MODEL_URL        => '\Base\Model\Hydrator\Url',
                 
                 
             ),
             'shared' => array(
                 
+                // ---------------------------------------------------- Entities
+                C::SERVICE_ENTITY_INSERAT    => false,
                 C::SERVICE_ENTITY_INFOSCRIPT => false,
-                C::SERVICE_ENTITY_ANZEIGE    => false,
-                C::SERVICE_ENTITY_URL        => false,
                 
-                
+                // ------------------------------------------------------- Forms
                 C::SERVICE_FORM_INFOSCRIPT => false,
-                C::SERVICE_FORM_ANZEIGE    => false,
+                
                 C::SERVICE_FORM_DELETE     => false,
                 
             )

@@ -11,39 +11,18 @@ use Base\Model\Hydrator\Infoscript as Hydrator;
 use Base\Model\Entity\Infoscript   as InfoscriptEntity;
 //use Base\Model\Entity\Url          as UrlEntity;
 
-class Infoscript extends AbstractFactory {
+class Infoscript implements \Zend\ServiceManager\FactoryInterface {
     
-    const TABLE    = C::INFO_TABLE;
-    const ID       = C::INFO_ID;
-    const SEQUENCE = 'infoscript_id_seq';
+    const TABLE    = 'infoscript';
 
 
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
 
-        parent::createService($serviceLocator);
+        //TODO use ServiceManager
+        $hydrator            = new Hydrator();
+        $objectPrototype     = new InfoscriptEntity();
+        $resultSetPrototype  = new HydratingResultSet($hydrator, $objectPrototype);
 
-        $this->setEntity(new InfoscriptEntity());
-        $this->setHydrator(new Hydrator());
-        $this->setResultSetPrototype(new HydratingResultSet($this->getHydrator(), $this->getEntity()));
-
-        return new TableGateway(
-                $this->getTable(),
-                $this->getAdapter(),
-                $this->getFeature(),
-                $this->getResultSetPrototype()
-        );
+        return new TableGateway(self::TABLE, $serviceLocator->get('Zend\Db\Adapter\Adapter'), null, $resultSetPrototype);
     }
-
-    protected function getIdName() {
-        return self::ID;
-    }
-
-    protected function getSequenceName() {
-        return self::SEQUENCE;
-    }
-
-    protected function getTableName() {
-        return self::TABLE;
-    }
-
 }

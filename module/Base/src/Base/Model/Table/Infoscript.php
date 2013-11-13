@@ -17,50 +17,48 @@ class Infoscript implements HydratorAwareInterface {
     protected $hydrator;
 
 
-    public function fetchAll(){
-        
-        return $this->getTableGateway()->select(
-                
+//    public function fetchAll(){
+//        
+//        return $this->getTableGateway()->select(
+//                
 //            function(Select $select){
 //               
 //                return $this->getJoin($select);
 //            }
-        );
-        
-    }
+//        );
+//        
+//    }
+//
+//    public function get($id) {
+//        
+//        $id = (int) $id;
+//        
+//        $resultSet = $this->tableGateway->select(
+//                
+//                function (Select $select) use ($id) {
+//                    $table = $this->getTableGateway()->getTable();
+//            
+////                    $select = $this->getJoin($select);
+//                    $select->where($table . '.' . C::INFO_ID . '=' . $id );
+//                }
+//        );
+//        
+//        $result = $resultSet->current();
+//        
+//        if(!$result){
+//            throw new Exception\NotFound("Konnte Infoscript mit der Id $id nicht finden!");
+//        }
+//        
+//        return $result;
+//    }
 
-    public function get($id) {
-        
-        $id = (int) $id;
-        
-        $resultSet = $this->tableGateway->select(
-                
-                function (Select $select) use ($id) {
-                    $table = $this->getTableGateway()->getTable();
-            
-//                    $select = $this->getJoin($select);
-                    $select->where($table . '.' . C::INFO_ID . '=' . $id );
-                }
-        );
-        
-        $result = $resultSet->current();
-        
-        if(!$result){
-            throw new Exception\NotFound("Konnte Infoscript mit der Id $id nicht finden!");
-        }
-        
-        return $result;
-    }
-
-    public function save(\Base\Model\Entity\Infoscript $infoscript){
-        
-        
-        
-        return ($infoscript->getId() === null) ?
-            $this->insert($infoscript):
-            $this->update($infoscript);
-    }
-
+//    public function save(\Base\Model\Entity\Infoscript $infoscript){
+//        
+//        $infoscript->getInseratId() ? 
+//                $this->update($infoscript) :
+//                $this->insert($infoscript);
+//        
+//    }
     
     public function insert(\Base\Model\Entity\Infoscript $infoscript){
         
@@ -75,30 +73,22 @@ class Infoscript implements HydratorAwareInterface {
         
         $data = $this->getHydrator()->extract($infoscript);
         
-        $this->getTableGateway()->update($data, array(C::INFO_ID => $infoscript->getId()));
+        $this->getTableGateway()->update($data, array('inserat_id' => $infoscript->getInseratId()));
         
-        return $infoscript->getId();
+        return $infoscript->getInseratId();
         
     }
 
     public function delete($id){
         
-        return $this->getTableGateway()->delete(array(C::INFO_ID => (int) $id));
+        return $this->getTableGateway()->delete(array('inserat_id' => (int) $id));
         
     }
 
 //    private function getJoin(Select $select){
 //        
-//        $columns   = array(
-//            C::URL_ADRESSE,
-//            C::URL_START,
-//            C::URL_ENDE,
-//            C::URL_AKTIV
-//        );
 //        
-//        $condition = C::INFO_URL_ID . '=' . C::URL_TABLE . '.' .C::URL_ID;
-//        
-//        $select->join(C::URL_TABLE, $condition, $columns);
+//        $select->join('inserat', 'infoscript.inserat_id = inserat.inserat_id');
 //        
 //        return $select;
 //        

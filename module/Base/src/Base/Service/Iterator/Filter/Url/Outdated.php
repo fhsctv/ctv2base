@@ -8,11 +8,11 @@ class Outdated extends \FilterIterator {
 
         $value = $this->current();
 
-        assert($value instanceof \Base\Model\Entity\AUrl);
+        assert($value instanceof \Base\Model\Entity\Inserat);
 
         $today = date('Y-m-d');
 
-        return ($value->getUrl()->getEnde() < $today);
+        return ($value->getEnde() < $today);
 
     }
 

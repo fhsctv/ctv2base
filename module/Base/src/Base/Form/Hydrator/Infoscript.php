@@ -15,10 +15,13 @@ class Infoscript implements HydratorInterface {
         };
         
         $result = array(
-            C::INFO_ID      => $object->getId(),
-            C::INFO_URL_ID  => $object->getUrlId(),
-            C::INFO_USER_ID => $object->getUserId(),
-            C::URL_FORM_ID  => $object->getUrl(),
+            'inserat_id'  => $object->getInseratId(),
+            'start'       => $object->getStart(),
+            'ende'        => $object->getEnde(),
+            'url'         => $object->getUrl(),
+            'aktiv'       => $object->getAktiv(),
+            'bildschirme' => $object->getBildschirme(),
+            'user_id'     => $object->getUserId(),
         );
         
         $result = array_filter($result, $filter);
@@ -29,10 +32,14 @@ class Infoscript implements HydratorInterface {
     
     public function hydrate(array $data, $object) {
         
-        $this->isEmpty($data[C::INFO_ID])      ? : $object->setId($data[C::INFO_ID]);
-        $this->isEmpty($data[C::INFO_URL_ID])  ? : $object->setUrlId($data[C::INFO_URL_ID]);
-        $this->isEmpty($data[C::INFO_USER_ID]) ? : $object->setUserId($data[C::INFO_USER_ID]);
-        $this->isEmpty($data[C::URL_FORM_ID])  ? : $object->setUrl($data[C::URL_FORM_ID]);
+        $this->isEmpty($data['inserat_id'])   ? : $object->setInseratId($data['inserat_id']);
+        $this->isEmpty($data['start'])        ? : $object->setStart($data['start']);
+        $this->isEmpty($data['ende'])         ? : $object->setEnde($data['ende']);
+        $this->isEmpty($data['url'])          ? : $object->setUrl($data['url']);
+        $this->isEmpty($data['aktiv'])        ? : $object->setAktiv($data['aktiv']);
+        $this->isEmpty($data['bildschirme'])  ? : $object->setBildschirme($data['bildschirme']);
+        $this->isEmpty($data['user_id'])      ? : $object->setUserId($data['user_id']);
+
         
         
 //        var_dump(__METHOD__, 'HYD_SRCDATA', $data, 'HYD_RES', $object);

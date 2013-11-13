@@ -14,7 +14,7 @@
 $db = array(
       'charset'  => 'LATIN-1',
       'driver' => 'Pdo',
-      'dsn'    => 'pgsql:host=localhost;port=5432;dbname=ctv',
+      'dsn'    => 'pgsql:host=localhost;port=5432;dbname=ctv2',
 );
 
 $service_manager = array(
