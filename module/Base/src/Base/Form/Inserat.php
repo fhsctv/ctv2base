@@ -101,11 +101,12 @@ class Inserat extends Form\Form {
 
         if(!$this->inseratId){
 
-            $id = new Form\Element\Text('inserat_id');
-            $id->setLabelAttributes(array('class' => 'control-label'));
-            $id->setAttribute('class', 'input-xlarge');
-            $id->setLabel(self::LABEL_ID);
+//            $id = new Form\Element\Text('inserat_id');
+//            $id->setLabelAttributes(array('class' => 'control-label'));
+//            $id->setAttribute('class', 'input-xlarge');
+//            $id->setLabel(self::LABEL_ID);
 
+            $id = new Form\Element\Hidden('inserat_id');
             $this->setInseratId($id);
         }
 
@@ -212,14 +213,16 @@ class Inserat extends Form\Form {
 
         if(!$this->userId){
 
-            $userId = new Form\Element\Text('user_id');
+            $userId = new Form\Element\Hidden('user_id');
+            
+            //$userId = new Form\Element\Text('user_id');
 
             //TODO aus Datenbank holen, Tabelle FH
 //            $userId->setValueOptions(array(1 => 'Administrator'));
 
-            $userId->setLabel(self::LABEL_USER_ID);
-            $userId->setLabelAttributes(array('class' => 'control-label'));
-            $userId->setAttribute('class', 'input-xlarge');
+//            $userId->setLabel(self::LABEL_USER_ID);
+//            $userId->setLabelAttributes(array('class' => 'control-label'));
+//            $userId->setAttribute('class', 'input-xlarge');
 
             $this->setUserId($userId);
         }

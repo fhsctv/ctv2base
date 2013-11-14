@@ -49,12 +49,14 @@ class Module
                 C::SERVICE_TABLEGATEWAY_INSERATBILDSCHIRMLINKER      => '\Base\Service\Factory\TableGateway\InseratBildschirmLinker',
                 C::SERVICE_TABLEGATEWAY_INSERAT      => '\Base\Service\Factory\TableGateway\Inserat',
                 C::SERVICE_TABLEGATEWAY_INFOSCRIPT   => '\Base\Service\Factory\TableGateway\Infoscript',
+                C::SERVICE_TABLEGATEWAY_BILDSCHIRM   => '\Base\Service\Factory\TableGateway\Bildschirm',
                 
                 
                 // ------------------------------------------------------ Tables
                 C::SERVICE_TABLE_INSERAT             => '\Base\Service\Factory\Table\Inserat',
                 C::SERVICE_TABLE_INSERATBILDSCHIRMLINKER             => '\Base\Service\Factory\Table\InseratBildschirmLinker',
                 C::SERVICE_TABLE_INFOSCRIPT          => '\Base\Service\Factory\Table\Infoscript',
+                C::SERVICE_TABLE_BILDSCHIRM          => '\Base\Service\Factory\Table\Bildschirm',
                 
                 
                 // ----------------------------------------------------- Mappers
@@ -69,6 +71,7 @@ class Module
                 // ---------------------------------------------------- Entities
                 C::SERVICE_ENTITY_INSERAT            => '\Base\Model\Entity\Inserat',
                 C::SERVICE_ENTITY_INFOSCRIPT         => '\Base\Model\Entity\Infoscript',
+                C::SERVICE_ENTITY_BILDSCHIRM         => '\Base\Model\Entity\Bildschirm',
                 
                 // ------------------------------------------------------- Forms
                 C::SERVICE_FORM_INFOSCRIPT           => '\Base\Form\Infoscript',
@@ -77,6 +80,7 @@ class Module
                 // ------------------------------------------------- DbHydrators
                 C::SERVICE_HYDRATOR_MODEL_INSERAT    => '\Base\Model\Hydrator\Inserat',
                 C::SERVICE_HYDRATOR_MODEL_INFOSCRIPT => '\Base\Model\Hydrator\Infoscript',
+                C::SERVICE_HYDRATOR_MODEL_BILDSCHIRM => '\Base\Model\Hydrator\Bildschirm',
                 
                 
             ),
@@ -85,11 +89,12 @@ class Module
                 // ---------------------------------------------------- Entities
                 C::SERVICE_ENTITY_INSERAT    => false,
                 C::SERVICE_ENTITY_INFOSCRIPT => false,
+                C::SERVICE_ENTITY_BILDSCHIRM => false,
                 
                 // ------------------------------------------------------- Forms
-                C::SERVICE_FORM_INFOSCRIPT => false,
+                C::SERVICE_FORM_INFOSCRIPT   => false,
                 
-                C::SERVICE_FORM_DELETE     => false,
+                C::SERVICE_FORM_DELETE       => false,
                 
             )
             

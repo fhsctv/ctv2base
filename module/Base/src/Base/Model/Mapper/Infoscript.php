@@ -58,6 +58,10 @@ class Infoscript {
         );
         
         $infoscript = $resultSet->current();
+        
+        if(!$infoscript){
+            throw new \Exception("Infoscript mit der Id $id nicht vorhanden");
+        }
 
         $this->getBildschirme($infoscript);
         
@@ -112,7 +116,7 @@ class Infoscript {
     }
 
     //TODO schreibe eigenes hydratingResultSet, welches erst beim iterieren durch den cursor die abhängigkeiten aus der datenbank holt
-    private function getBildschirme($infoscript){
+    private function getBildschirme(\Base\Model\Entity\Inserat $infoscript){
         
         $bildschirme = $this->getTableInseratBildschirmLinker()->getByInseratId($infoscript->getInseratId());
         foreach($bildschirme as $bildschirm){

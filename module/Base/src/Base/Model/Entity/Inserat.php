@@ -4,6 +4,11 @@ namespace Base\Model\Entity;
 
 class Inserat {
 
+    const STATUS_AKTIV       = 'aktiv';
+    const STATUS_ABGELAUFEN  = 'abgelaufen';
+    const STATUS_ZUKUNFT     = 'zukünftig';
+    
+    
     /**
      * inseratId eindeutige Id des Inserats
      * @var int
@@ -137,5 +142,30 @@ class Inserat {
         return $this;
     }
 
+    
+    public function isAngezeigt(){
+        
+        $today = date('Y-m-d');
+        
+        return($this->getAktiv() && ($this->getStart() <= $today) && $this->getEnde() >= $today );
+        
+    }
 
+    public function getStatus(){
+        
+        $today = date('Y-m-d');
+        
+        if($this->getEnde() < $today){
+            return self::STATUS_ABGELAUFEN;
+        }
+        
+        if($this->getStart() > $today){
+            return self::STATUS_ZUKUNFT;
+        }
+        
+        if($this->getAktiv() && $this->getStart()<= $today && $this->getEnde() >= $today){
+            return self::STATUS_AKTIV;
+        }
+        
+    }
 }

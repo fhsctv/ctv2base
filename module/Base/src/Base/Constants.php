@@ -39,20 +39,24 @@ class Constants {
     //----------------------------------------------------------------- Entities
     const SERVICE_ENTITY_INSERAT            = 'Base\Model\Entity\Inserat';
     const SERVICE_ENTITY_INFOSCRIPT         = 'Base\Model\Entity\Infoscript';
+    const SERVICE_ENTITY_BILDSCHIRM         = 'Base\Model\Entity\Bildschirm';
     
     //-------------------------------------------------------------- DbHydrators
     const SERVICE_HYDRATOR_MODEL_INSERAT    = 'Base\Model\Hydrator\Inserat';
     const SERVICE_HYDRATOR_MODEL_INFOSCRIPT = 'Base\Model\Hydrator\Infoscript';
+    const SERVICE_HYDRATOR_MODEL_BILDSCHIRM = 'Base\Model\Hydrator\Bildschirm';
     
     //------------------------------------------------------------ TableGateways
     const SERVICE_TABLEGATEWAY_INSERAT      = 'Base\TableGateway\Inserat';
     const SERVICE_TABLEGATEWAY_INSERATBILDSCHIRMLINKER = 'Base\TableGateWay\InseratBilschirmLinker';
     const SERVICE_TABLEGATEWAY_INFOSCRIPT   = 'Base\TableGateway\Infoscript';
+    const SERVICE_TABLEGATEWAY_BILDSCHIRM   = 'Base\TableGateway\Bildschirm';
     
     //------------------------------------------------------------------- Tables
     const SERVICE_TABLE_INSERAT             = 'Base\Table\Inserat';
     const SERVICE_TABLE_INSERATBILDSCHIRMLINKER             = 'Base\Table\InseratBildschirmLinker';
     const SERVICE_TABLE_INFOSCRIPT          = 'Base\Table\Infoscript';
+    const SERVICE_TABLE_BILDSCHIRM          = 'Base\Table\Bildschirm';
     
     //------------------------------------------------------------------ Mappers
     const SERVICE_MAPPER_INFOSCRIPT         = 'Base\Mapper\Infoscript';
