@@ -41,10 +41,14 @@ class Constants {
     const SERVICE_ENTITY_INFOSCRIPT         = 'Base\Model\Entity\Infoscript';
     const SERVICE_ENTITY_BILDSCHIRM         = 'Base\Model\Entity\Bildschirm';
     
+    const SM_ENTITY_USER                    = 'Base\Model\Entity\User';
+    
     //-------------------------------------------------------------- DbHydrators
     const SERVICE_HYDRATOR_MODEL_INSERAT    = 'Base\Model\Hydrator\Inserat';
     const SERVICE_HYDRATOR_MODEL_INFOSCRIPT = 'Base\Model\Hydrator\Infoscript';
     const SERVICE_HYDRATOR_MODEL_BILDSCHIRM = 'Base\Model\Hydrator\Bildschirm';
+    
+    const SM_HYDRATOR_MODEL_USER            = 'Base\Model\Hydrator\User';
     
     //------------------------------------------------------------ TableGateways
     const SERVICE_TABLEGATEWAY_INSERAT      = 'Base\TableGateway\Inserat';
@@ -52,11 +56,15 @@ class Constants {
     const SERVICE_TABLEGATEWAY_INFOSCRIPT   = 'Base\TableGateway\Infoscript';
     const SERVICE_TABLEGATEWAY_BILDSCHIRM   = 'Base\TableGateway\Bildschirm';
     
+    const SM_TABLEGATEWAY_USER              = 'Base\TableGateway\User';
+    
     //------------------------------------------------------------------- Tables
     const SERVICE_TABLE_INSERAT             = 'Base\Table\Inserat';
     const SERVICE_TABLE_INSERATBILDSCHIRMLINKER             = 'Base\Table\InseratBildschirmLinker';
     const SERVICE_TABLE_INFOSCRIPT          = 'Base\Table\Infoscript';
     const SERVICE_TABLE_BILDSCHIRM          = 'Base\Table\Bildschirm';
+    
+    const SM_TABLE_USER                     = 'Base\Table\User';
     
     //------------------------------------------------------------------ Mappers
     const SERVICE_MAPPER_INFOSCRIPT         = 'Base\Mapper\Infoscript';

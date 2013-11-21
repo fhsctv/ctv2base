@@ -51,12 +51,16 @@ class Module
                 C::SERVICE_TABLEGATEWAY_INFOSCRIPT   => '\Base\Service\Factory\TableGateway\Infoscript',
                 C::SERVICE_TABLEGATEWAY_BILDSCHIRM   => '\Base\Service\Factory\TableGateway\Bildschirm',
                 
+                C::SM_TABLEGATEWAY_USER         => '\Base\Service\Factory\TableGateway\User',
+                
                 
                 // ------------------------------------------------------ Tables
                 C::SERVICE_TABLE_INSERAT             => '\Base\Service\Factory\Table\Inserat',
                 C::SERVICE_TABLE_INSERATBILDSCHIRMLINKER             => '\Base\Service\Factory\Table\InseratBildschirmLinker',
                 C::SERVICE_TABLE_INFOSCRIPT          => '\Base\Service\Factory\Table\Infoscript',
                 C::SERVICE_TABLE_BILDSCHIRM          => '\Base\Service\Factory\Table\Bildschirm',
+                
+                C::SM_TABLE_USER                     => '\Base\Service\Factory\Table\User',
                 
                 
                 // ----------------------------------------------------- Mappers
@@ -73,6 +77,8 @@ class Module
                 C::SERVICE_ENTITY_INFOSCRIPT         => '\Base\Model\Entity\Infoscript',
                 C::SERVICE_ENTITY_BILDSCHIRM         => '\Base\Model\Entity\Bildschirm',
                 
+                C::SM_ENTITY_USER                    => '\Base\Model\Entity\User',
+                
                 // ------------------------------------------------------- Forms
                 C::SERVICE_FORM_INFOSCRIPT           => '\Base\Form\Infoscript',
                 C::SERVICE_FORM_DELETE               => '\Base\Form\Delete',
@@ -82,6 +88,8 @@ class Module
                 C::SERVICE_HYDRATOR_MODEL_INFOSCRIPT => '\Base\Model\Hydrator\Infoscript',
                 C::SERVICE_HYDRATOR_MODEL_BILDSCHIRM => '\Base\Model\Hydrator\Bildschirm',
                 
+                C::SM_HYDRATOR_MODEL_USER            => '\Base\Model\Hydrator\User',
+                
                 
             ),
             'shared' => array(
@@ -90,6 +98,8 @@ class Module
                 C::SERVICE_ENTITY_INSERAT    => false,
                 C::SERVICE_ENTITY_INFOSCRIPT => false,
                 C::SERVICE_ENTITY_BILDSCHIRM => false,
+                
+                C::SM_ENTITY_USER            => false,
                 
                 // ------------------------------------------------------- Forms
                 C::SERVICE_FORM_INFOSCRIPT   => false,

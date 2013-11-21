@@ -110,4 +110,24 @@ class IndexController extends AbstractActionController {
         
     }
     
+    public function userAction(){
+        
+        $user = $this->getServiceLocator()->get(C::SM_ENTITY_USER);
+        $user->setUserName('MyUsername')->setEmail('MyMail')
+             ->setDisplayName('MyDisplayName')->setPassword('MySecret')
+             ->setState('1');
+        
+        
+        $table = $this->getServiceLocator()->get(C::SM_TABLE_USER);
+        $table->save($user);
+        
+        
+        foreach ($table->fetchAll() as $result) {
+            var_dump($result);
+        }
+        
+        
+        return [];
+    }
+    
 }

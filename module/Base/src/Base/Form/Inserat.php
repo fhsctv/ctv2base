@@ -76,18 +76,6 @@ class Inserat extends Form\Form {
 
         parent::__construct($name);
 
-        $this->add($this->getInseratId());
-        $this->add($this->getUserId());
-        $this->add($this->getStart());
-        $this->add($this->getEnde());
-        $this->add($this->getUrl());
-        $this->add($this->getAktiv());
-        $this->add($this->getBildschirme());
-
-        $this->add($this->getSubmit());
-
-        $this->setAttribute('class', 'well form-inline');
-
     }
 
 //    public function getData($flag = null) {
