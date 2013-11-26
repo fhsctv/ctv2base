@@ -37,11 +37,11 @@ class InseratBildschirmLinker implements HydratorAwareInterface {
     
 
 
-    public function delete($inseratId, $displayId){
+    public function delete($inseratId, $bildschirmId){
         
         return $this->getTableGateway()->delete(
                 array('inserat_id' => (int) $inseratId, 
-                      'bildschirm_id' => (int) $displayId));
+                      'bildschirm_id' => (int) $bildschirmId));
     }
 
 

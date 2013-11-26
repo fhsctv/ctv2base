@@ -51,7 +51,8 @@ class Module
                 C::SERVICE_TABLEGATEWAY_INFOSCRIPT   => '\Base\Service\Factory\TableGateway\Infoscript',
                 C::SERVICE_TABLEGATEWAY_BILDSCHIRM   => '\Base\Service\Factory\TableGateway\Bildschirm',
                 
-                C::SM_TABLEGATEWAY_USER         => '\Base\Service\Factory\TableGateway\User',
+                C::SM_TABLEGATEWAY_USER              => '\Base\Service\Factory\TableGateway\User',
+                C::SM_TABLEGATEWAY_FACHHOCHSCHULE    => '\Base\Service\Factory\TableGateway\Fachhochschule',
                 
                 
                 // ------------------------------------------------------ Tables
@@ -61,14 +62,17 @@ class Module
                 C::SERVICE_TABLE_BILDSCHIRM          => '\Base\Service\Factory\Table\Bildschirm',
                 
                 C::SM_TABLE_USER                     => '\Base\Service\Factory\Table\User',
+                C::SM_TABLE_FACHHOCHSCHULE           => '\Base\Service\Factory\Table\Fachhochschule',
                 
                 
                 // ----------------------------------------------------- Mappers
                 C::SERVICE_MAPPER_INFOSCRIPT         => '\Base\Service\Factory\Mapper\Infoscript',
+                C::SM_MAPPER_FACHHOCHSCHULE          => '\Base\Service\Factory\Mapper\Fachhochschule',
                 
                 
                 // ----------------------------------------------------- Services
                 C::SERVICE_INFOSCRIPT               => '\Base\Service\Factory\Infoscript',
+                C::SERVICE_DISPLAYLINK              => '\Base\Service\Factory\DisplayLink',
             ),
             'invokables' => array (
                 
@@ -78,6 +82,7 @@ class Module
                 C::SERVICE_ENTITY_BILDSCHIRM         => '\Base\Model\Entity\Bildschirm',
                 
                 C::SM_ENTITY_USER                    => '\Base\Model\Entity\User',
+                C::SM_ENTITY_FACHHOCHSCHULE          => '\Base\Model\Entity\Fachhochschule',
                 
                 // ------------------------------------------------------- Forms
                 C::SERVICE_FORM_INFOSCRIPT           => '\Base\Form\Infoscript',
@@ -89,6 +94,7 @@ class Module
                 C::SERVICE_HYDRATOR_MODEL_BILDSCHIRM => '\Base\Model\Hydrator\Bildschirm',
                 
                 C::SM_HYDRATOR_MODEL_USER            => '\Base\Model\Hydrator\User',
+                C::SM_HYDRATOR_MODEL_FACHHOCHSCHULE  => '\Base\Model\Hydrator\Fachhochschule',
                 
                 
             ),
@@ -100,6 +106,7 @@ class Module
                 C::SERVICE_ENTITY_BILDSCHIRM => false,
                 
                 C::SM_ENTITY_USER            => false,
+                C::SM_ENTITY_FACHHOCHSCHULE  => false,
                 
                 // ------------------------------------------------------- Forms
                 C::SERVICE_FORM_INFOSCRIPT   => false,

@@ -73,7 +73,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Base\Controller\Index' => 'Base\Controller\IndexController'
+            'Base\Controller\Index'       => 'Base\Controller\IndexController',
+            'Base\Controller\DisplayLink' => 'Base\Controller\DisplayLinkController',
         ),
     ),
     'view_manager' => array(

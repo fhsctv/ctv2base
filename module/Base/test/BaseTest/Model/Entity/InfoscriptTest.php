@@ -11,7 +11,6 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
     
     protected $entity;
     
-
     /**
      * wird bei jedem Test aufgerufen
      */
@@ -19,7 +18,6 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
         
         $this->sm = Bootstrap::getServiceManager();
         $this->entity = $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT);
-        
     }
     
     /**
@@ -40,138 +38,38 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
      */
     public function testGetterSetter(){
         
-        $this->entity->setId(11);
-        $this->entity->setUrlId(222);
-        $this->entity->setUserId(3333);
+        $this->entity->setTitel('Mein Titel');
         
-        $this->assertEquals(11,   $this->entity->getId());
-        $this->assertEquals(222,  $this->entity->getUrlId());
-        $this->assertEquals(3333, $this->entity->getUserId());
-        
+        $this->assertEquals('Mein Titel', $this->entity->getTitel());
     }
     
+    /**
+     * Testet, ob Zahlen zu Integern konvertiert werden.
+     */
     public function testSetterConvertNumbersToInt(){
         
-        $this->entity->setId('11');
-        $this->entity->setUrlId('222');
-        $this->entity->setUserId('3333');
-        
-        $this->assertTrue(is_int($this->entity->getId()), 'getId() muss sein Argument in ein Integer konvertieren!');
-        $this->assertTrue(is_int($this->entity->getUrlId()), 'getUrlId() muss sein Argument in ein Integer konvertieren!');
-        $this->assertTrue(is_int($this->entity->getUserId()), 'getUserId() muss sein Argument in ein Integer konvertieren!');
-        
+        $this->markTestSkipped();
     }
     
     /**
      * Testet, ob die Setter ihre eigene Instanz wieder zurückgeben.
      * Damit sind verkettete Aufrufe der Setter möglich;
      */
-    public function testFluidInterfaceSetter() {
+    public function testFluidInterfaceSetter(){
         
-        $class = 'Base\Model\Entity\Infoscript';
+        $class = '\Base\Model\Entity\Infoscript';
         
-        $this->assertInstanceOf($class, $this->entity->setId(11));
-        $this->assertInstanceOf($class, $this->entity->setUrlId(222));
-        $this->assertInstanceOf($class, $this->entity->setUserId(3333));
-        
+        $this->assertInstanceOf($class, $this->entity->setTitel('Mein Titel'));
     }
     
     /**
-     * testet, ob die Setter eine InvalidArgumentException werfen, wenn
-     * das Argument keine Zahl ist.
+     * Testet, ob die Infoscriptklasse von der Inseratklasse erbt.
      */
-    public function testSetterArgumentsNumericId() {
+    public function testExtendsInseratEntity(){
         
-        $message = 'expected InvalidArgumentException was not thrown';
+        $class = '\Base\Model\Entity\Inserat';
         
-        try{
-            $this->entity->setId("adsa");
-            $this->fail('setId: ' . $message);
-        }
-        catch(\InvalidArgumentException $e){}
-
-        try{
-            $this->entity->setId(null);
-            $this->fail('setId: ' . $message);
-        }
-        catch(\InvalidArgumentException $e){}
-
-
-        try{
-            $this->entity->setUrlId("asd");
-            $this->fail('setUrlId: ' . $message);
-        }
-        catch(\InvalidArgumentException $e){}
-
-        try{
-            $this->entity->setUrlId(null);
-            $this->fail('setUrlId: ' . $message);
-        }
-        catch(\InvalidArgumentException $e){}
-
-
-        try{
-            $this->entity->setUserId("asd");
-            $this->fail('setUserId: ' . $message);
-        }
-        catch(\InvalidArgumentException $e){}
-
-        try{
-            $this->entity->setUserId(null);
-            $this->fail('setUserId: ' . $message);
-        }
-        catch(\InvalidArgumentException $e){}
-            
-    }
-    
-    /**
-     * testet, ob getUrl eine UrlEntity liefert und nicht etwas null oder
-     * einen string
-     */
-    public function testGetUrlReturnsUrlEntity(){
-        
-        $this->assertInstanceOf('Base\Model\Entity\Url', $this->entity->getUrl());
-        $this->assertNotNull($this->entity->getUrl());
-        
-    }
-    
-    /**
-     * Testet ob das Ergebnis von getUrl dieselbe Instanz referenziert wie,
-     * das Objekt, das durch setUrl gesetzt wurde.
-     */
-    public function testGetUrlReturnsSameInstanceAsWasSet(){
-        
-        $originalUrl = $this->sm->get(C::SERVICE_ENTITY_URL);
-        
-        $this->entity->setUrl($originalUrl);
-        
-        $this->assertInstanceOf('Base\Model\Entity\Url', $this->entity->getUrl());
-        $this->assertSame($originalUrl, $this->entity->getUrl());
-    }
-    
-    /**
-     * Testet ob die Url seine Abhängigkeit beim setzen gleich mitgeteilt wird.
-     * Die Url soll wissen, zu welchem Infoscript sie gehört.
-     */
-//    public function testSetUrlSetsInfoscriptAsDependency(){
-//        
-//        $url = $this->sm->get(C::SERVICE_ENTITY_URL);
-//        
-//        $this->entity->setUrl($url);
-//        
-//        $this->assertSame($this->entity, $this->entity->getUrl()->getDependency());
-//        $this->assertInstanceOf('Base\Model\Entity\Infoscript', $this->entity->getUrl()->getDependency());
-//        
-//    }
-    
-    /**
-     * Testet, ob das Infoscript Schnittststellen zum Verwalten seiner Url
-     * implementiert.
-     */
-    public function testExtendsAUrl() {
-        
-        $this->assertInstanceOf('Base\Model\Entity\AUrl', $this->entity);
-        
+        $this->assertInstanceOf($class, $this->entity);
     }
     
 }

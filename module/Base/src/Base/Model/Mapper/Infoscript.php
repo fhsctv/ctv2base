@@ -72,7 +72,7 @@ class Infoscript {
         
         $userId = (int) $userId;
         
-        $infoscript = $this->getTableInfoscript()->getTableGateway()->select(
+        $resultSet = $this->getTableInfoscript()->getTableGateway()->select(
             function (Select $select) use ($userId) {
                 
                 $table = $this->getTableInfoscript()->getTableGateway()->getTable();
@@ -83,9 +83,15 @@ class Infoscript {
             }
         );
         
-        $this->getBildschirme($infoscript);
+        $resultSet->buffer();
+        
+        foreach ($resultSet as $infoscript) {
+            
+            $this->getBildschirme($infoscript);
+            
+        }
 
-        return $infoscript;
+        return $resultSet;
     }
     
     public function getByBildschirmId($bildschirmId){

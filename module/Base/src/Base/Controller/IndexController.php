@@ -112,17 +112,19 @@ class IndexController extends AbstractActionController {
     
     public function userAction(){
         
-        $user = $this->getServiceLocator()->get(C::SM_ENTITY_USER);
-        $user->setUserName('MyUsername')->setEmail('MyMail')
-             ->setDisplayName('MyDisplayName')->setPassword('MySecret')
-             ->setState('1');
+        $user = $this->getServiceLocator()->get(C::SM_ENTITY_FACHHOCHSCHULE);
+        $user->setUserName('MyUsername3')->setEmail('MyMail3')
+             ->setDisplayName('MyDisplayName3')->setPassword('MySecret3')
+             ->setState('1')->setName('MyOrganisationName');
         
         
-        $table = $this->getServiceLocator()->get(C::SM_TABLE_USER);
-        $table->save($user);
+        
+        $mapper = $this->getServiceLocator()->get(C::SM_MAPPER_FACHHOCHSCHULE);
         
         
-        foreach ($table->fetchAll() as $result) {
+        $mapper->save($user);
+        
+        foreach ($mapper->fetchAll() as $result) {
             var_dump($result);
         }
         

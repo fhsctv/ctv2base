@@ -4,10 +4,14 @@ namespace Base\Model\Entity;
 
 class Inserat {
 
-    const STATUS_AKTIV       = 'aktiv';
-    const STATUS_ABGELAUFEN  = 'abgelaufen';
-    const STATUS_ZUKUNFT     = 'zukünftig';
+    const ACTIVE   = '1';
+    const INACTIVE = '0';
     
+    const STATUS_AKTIV                = 'aktiv';
+    const STATUS_ABGELAUFEN           = 'abgelaufen';
+    const STATUS_ZUKUNFT              = 'zukünftig';
+    const STATUS_KEIN_BILDSCHIRM      = 'kein Bildschirm ausgewählt';
+    const STATUS_NICHT_FREIGESCHALTET = 'nicht freigeschaltet';
     
     /**
      * inseratId eindeutige Id des Inserats
@@ -62,7 +66,9 @@ class Inserat {
 
     public function setInseratId($inseratId) {
         
-        $this->inseratId = $inseratId;
+        assert(is_numeric($inseratId), __METHOD__ . ": Id muss eine Zahl sein.");
+        
+        $this->inseratId = (int) $inseratId;
         return $this;
     }
 
@@ -110,7 +116,10 @@ class Inserat {
 
     public function setAktiv($aktiv) {
 
-        $this->aktiv = $aktiv;
+        assert(is_numeric($aktiv));
+        assert(in_array($aktiv, [self::INACTIVE, self::ACTIVE]), "Nur die Werte '0' und '1' akzeptiert, ist aber $aktiv ");
+        
+        $this->aktiv = (int) $aktiv;
         return $this;
     }
 
@@ -126,6 +135,9 @@ class Inserat {
         return $this;
     }
 
+    /**
+     * @todo Benutze Bildschirmentität als Parameter anstelle der Zahl!
+     */
     public function addBildschirm($bildschirm) {
 
         array_push($this->bildschirme, $bildschirm);
@@ -147,7 +159,7 @@ class Inserat {
         
         $today = date('Y-m-d');
         
-        return($this->getAktiv() && ($this->getStart() <= $today) && $this->getEnde() >= $today );
+        return($this->getAktiv() && ($this->getStart() <= $today) && $this->getEnde() >= $today && $this->getBildschirme());
         
     }
 
@@ -162,6 +174,15 @@ class Inserat {
         if($this->getStart() > $today){
             return self::STATUS_ZUKUNFT;
         }
+        
+        if(!$this->getAktiv()){
+            return self::STATUS_NICHT_FREIGESCHALTET;
+        }
+        
+        if(!$this->getBildschirme()) {
+            return self::STATUS_KEIN_BILDSCHIRM;
+        }
+        
         
         if($this->getAktiv() && $this->getStart()<= $today && $this->getEnde() >= $today){
             return self::STATUS_AKTIV;

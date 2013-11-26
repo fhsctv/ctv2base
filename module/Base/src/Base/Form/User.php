@@ -60,15 +60,17 @@ class User extends \Zend\Form\Form {
     public function __construct($name = 'user') {
 
         parent::__construct($name);
+        
+        $this->setInputFilter((new Filter\User)->getInputfilter());
 
     }
 
-
+    
     public function getUserId() {
 
         if(!$this->userId){
 
-            $userId = new \Zend\Form\Element\Hidden('userId');
+            $userId = new \Zend\Form\Element\Hidden('user_id');
 //            $userId->setLabel('Benutzer- Id: ');
 
             $this->setUserId($userId);
@@ -87,7 +89,7 @@ class User extends \Zend\Form\Form {
 
         if(!$this->userName){
 
-            $userName = new \Zend\Form\Element\Text('userName');
+            $userName = new \Zend\Form\Element\Text('username');
             $userName->setLabel('Benutzername: ');
 
             $this->setUserName($userName);
@@ -125,7 +127,7 @@ class User extends \Zend\Form\Form {
 
         if(!$this->displayName){
 
-            $displayName = new \Zend\Form\Element\Text('displayName');
+            $displayName = new \Zend\Form\Element\Text('display_name');
             $displayName->setLabel('Anzeigename: ');
 
             $this->setDisplayName($displayName);

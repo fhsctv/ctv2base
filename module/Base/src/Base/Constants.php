@@ -42,6 +42,7 @@ class Constants {
     const SERVICE_ENTITY_BILDSCHIRM         = 'Base\Model\Entity\Bildschirm';
     
     const SM_ENTITY_USER                    = 'Base\Model\Entity\User';
+    const SM_ENTITY_FACHHOCHSCHULE          = 'Base\Model\Entity\Fachhochschule';
     
     //-------------------------------------------------------------- DbHydrators
     const SERVICE_HYDRATOR_MODEL_INSERAT    = 'Base\Model\Hydrator\Inserat';
@@ -49,6 +50,7 @@ class Constants {
     const SERVICE_HYDRATOR_MODEL_BILDSCHIRM = 'Base\Model\Hydrator\Bildschirm';
     
     const SM_HYDRATOR_MODEL_USER            = 'Base\Model\Hydrator\User';
+    const SM_HYDRATOR_MODEL_FACHHOCHSCHULE  = 'Base\Model\Hydrator\Fachhochschule';
     
     //------------------------------------------------------------ TableGateways
     const SERVICE_TABLEGATEWAY_INSERAT      = 'Base\TableGateway\Inserat';
@@ -57,6 +59,7 @@ class Constants {
     const SERVICE_TABLEGATEWAY_BILDSCHIRM   = 'Base\TableGateway\Bildschirm';
     
     const SM_TABLEGATEWAY_USER              = 'Base\TableGateway\User';
+    const SM_TABLEGATEWAY_FACHHOCHSCHULE    = 'Base\TableGateway\Fachhochschule';
     
     //------------------------------------------------------------------- Tables
     const SERVICE_TABLE_INSERAT             = 'Base\Table\Inserat';
@@ -65,9 +68,11 @@ class Constants {
     const SERVICE_TABLE_BILDSCHIRM          = 'Base\Table\Bildschirm';
     
     const SM_TABLE_USER                     = 'Base\Table\User';
+    const SM_TABLE_FACHHOCHSCHULE           = 'Base\Table\Fachhochschule';
     
     //------------------------------------------------------------------ Mappers
     const SERVICE_MAPPER_INFOSCRIPT         = 'Base\Mapper\Infoscript';
+    const SM_MAPPER_FACHHOCHSCHULE          = 'Base\Mapper\Fachhochschule';
     
     //-------------------------------------------------------------------- Forms
     const SERVICE_FORM_INFOSCRIPT           = 'Base\Form\Infoscript';
@@ -75,6 +80,7 @@ class Constants {
     
     //----------------------------------------------------------------- Services
     const SERVICE_INFOSCRIPT                = 'Base\Service\Infoscript';
+    const SERVICE_DISPLAYLINK               = 'Base\Service\DisplayLink';
     
     
 }
