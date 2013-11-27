@@ -12,7 +12,7 @@ class Future extends \FilterIterator {
 
         $today = date('Y-m-d');
 
-        return ($value->getStart() > $today);
+        return ($value->getStart() > $today && $value->getAktiv());
 
     }
 

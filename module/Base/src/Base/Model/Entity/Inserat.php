@@ -167,6 +167,10 @@ class Inserat {
         
         $today = date('Y-m-d');
         
+        if(!$this->getAktiv()){
+            return self::STATUS_NICHT_FREIGESCHALTET;
+        }
+        
         if($this->getEnde() < $today){
             return self::STATUS_ABGELAUFEN;
         }
@@ -175,14 +179,9 @@ class Inserat {
             return self::STATUS_ZUKUNFT;
         }
         
-        if(!$this->getAktiv()){
-            return self::STATUS_NICHT_FREIGESCHALTET;
-        }
-        
         if(!$this->getBildschirme()) {
             return self::STATUS_KEIN_BILDSCHIRM;
         }
-        
         
         if($this->getAktiv() && $this->getStart()<= $today && $this->getEnde() >= $today){
             return self::STATUS_AKTIV;

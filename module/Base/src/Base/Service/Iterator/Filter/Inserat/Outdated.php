@@ -12,7 +12,7 @@ class Outdated extends \FilterIterator {
 
         $today = date('Y-m-d');
 
-        return ($value->getEnde() < $today);
+        return ($value->getEnde() < $today && $value->getAktiv());
 
     }
 
