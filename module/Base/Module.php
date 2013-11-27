@@ -119,4 +119,12 @@ class Module
         
     }
     
+    public function getViewHelperConfig()   {
+        return [
+            'invokables' => [
+//                'FormCollection' => 'Base\View\Helper\FormCollection',
+                'FormRow'        => 'Base\View\Helper\FormRow',
+             ]
+        ];
+    }
 }
