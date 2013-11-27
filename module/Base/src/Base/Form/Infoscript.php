@@ -37,15 +37,18 @@ class Infoscript extends Inserat {
 
         $this->add($this->getSubmit());
 
-        $this->setAttribute('class', 'well form-inline');
+        $this->setAttribute('class', 'well form-horizontal');
         
+        $this->setClassAttributes();
     }
     
     public function getTitel() {
         
         if(!$this->titel) {
             $titel = new Form\Element\Text('titel');
+            
             $titel->setLabel('Titel: ');
+            $titel->setAttribute('placeholder', 'Überschrift ihres Infoscripts');
             
             $this->setTitel($titel);
         }

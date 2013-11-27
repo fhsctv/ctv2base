@@ -1,0 +1,51 @@
+<h2>Infoscript löschen</h2>
+
+<?php $this->form->setAttribute('action', $this->urlDelete); ?>
+<?php $this->form->getId()->setValue($this->infoscript->getInseratId()); ?>
+
+<?php $this->form->prepare(); ?>
+
+
+<div class="row">
+    
+    <div class="col-md-5">
+        
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                Sicherheitsfrage
+            </div>
+            <div class="panel-body">
+                <p>Sind Sie sicher dass sie dieses Infoscript löschen möchten?</p>
+                <div class="row row-fluid">
+                    <?php echo $this->form()->openTag($this->form); ?>
+
+                    <div class="col-md-6">
+                        <?php echo $this->formRow($this->form->getYes()); ?>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pull-right"> <?php echo $this->formRow($this->form->getNo()); ?> </div>
+                    </div>
+
+                    <?php echo $this->form()->closeTag($this->form); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<?php echo $this->partial('base/infoscript/partial/infoscript-preview.phtml'); ?>
+
+
+    
+
+
+    
+    
+    
+
+
+
+
+
+

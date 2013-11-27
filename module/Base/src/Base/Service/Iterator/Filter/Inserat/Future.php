@@ -1,8 +1,8 @@
 <?php
 
-namespace Base\Service\Iterator\Filter\Url;
+namespace Base\Service\Iterator\Filter\Inserat;
 
-class Current extends \FilterIterator {
+class Future extends \FilterIterator {
 
     public function accept() {
 
@@ -12,7 +12,7 @@ class Current extends \FilterIterator {
 
         $today = date('Y-m-d');
 
-        return (($value->getStart() <= $today) && ($value->getEnde() >= $today));
+        return ($value->getStart() > $today);
 
     }
 

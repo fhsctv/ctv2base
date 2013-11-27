@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Service\Iterator\Filter\Url;
+namespace Base\Service\Iterator\Filter\Inserat;
 
 class Outdated extends \FilterIterator {
 

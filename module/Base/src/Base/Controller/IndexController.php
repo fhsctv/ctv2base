@@ -29,13 +29,13 @@ class IndexController extends AbstractActionController {
 
 
 
-        $form->isValid();
+//        $form->isValid();
 
 //        $form->getData();
 
-        var_dump('---------------POST---------------' , $this->getRequest()->getPost());
+//        var_dump('---------------POST---------------' , $this->getRequest()->getPost());
 
-        var_dump('-------------GET-DATA-------------' , $form->getData());
+//        var_dump('-------------GET-DATA-------------' , $form->getData());
         return new ViewModel(
             array(
                 'form' => $form,

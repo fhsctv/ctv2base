@@ -10,7 +10,7 @@ use Base\Form\Hydrator;
 use Base\Model\Entity;
 
 
-class Inserat extends Form\Form {
+abstract class Inserat extends Form\Form {
 
     const LABEL_ID      = 'Id: ';
     const LABEL_URL_ID  = 'UrlId: ';
@@ -75,7 +75,7 @@ class Inserat extends Form\Form {
     public function __construct($name = null) {
 
         parent::__construct($name);
-
+        
     }
 
 //    public function getData($flag = null) {
@@ -84,6 +84,21 @@ class Inserat extends Form\Form {
 //
 //        return $obj;
 //    }
+    
+    protected function setClassAttributes() {
+        
+        foreach ($this->getElements() as $element) {
+            
+            if($element instanceof Form\Element\Hidden || $element instanceof Form\Element\Submit){
+                continue;
+            }
+            
+            $element->setAttribute('class', 'form-control');
+            $element->setLabelAttributes(['class' => 'control-label']);
+        }
+        
+        return $this;
+    }
 
     public function getInseratId() {
 
@@ -111,9 +126,9 @@ class Inserat extends Form\Form {
         if(empty($this->start)){
 
             $start = new Form\Element\Date('start');
-            $start->setLabel(self::LABEL_START);
-            $start->setLabelAttributes(array('class' => 'control-label'));
-            $start->setAttribute('class', 'input-xlarge');
+            $start->setLabel(self::LABEL_START, null, 'append');
+            
+            $start->setValue(date('Y-m-d', strtotime('+1 days')));
 
             $this->setStart($start);
         }
@@ -133,8 +148,6 @@ class Inserat extends Form\Form {
 
             $ende = new Form\Element\Date('ende');
             $ende->setLabel(self::LABEL_ENDE);
-            $ende->setLabelAttributes(array('class' => 'control-label'));
-            $ende->setAttribute('class', 'input-xlarge');
 
             $this->setEnde($ende);
         }
@@ -155,9 +168,20 @@ class Inserat extends Form\Form {
 
             $url = new Form\Element\Url('url');
             $url->setLabel(self::LABEL_URL);
-            $url->setLabelAttributes(array('class' => 'control-label'));
-            $url->setAttribute('class', 'input-xlarge');
-
+            
+            $url->setAttribute('placeholder', 'Url des Inserats');
+            
+//TODO
+//            http://devincharge.com/bootstrapping-zf2-forms/ vielleicht mal das hier angucken für prepend und append optionen
+//            $url->setOptions(
+//                [
+//                    'bootstrap' => 
+//                    [
+//                        'append' => ['$'],
+//                    ]
+//                ]
+//            );
+            
             $this->setUrl($url);
         }
 
@@ -177,10 +201,13 @@ class Inserat extends Form\Form {
         if(!$this->aktiv){
 
             $aktiv = new Form\Element\Text('aktiv');
+            
             $aktiv->setLabel(self::LABEL_AKTIV);
-            $aktiv->setLabelAttributes(array('class' => 'control-label'));
-            $aktiv->setAttribute('class', 'input-xlarge');
-
+            
+            $aktiv->setValue(0);
+            
+            $aktiv->setAttribute('placeholder', '0 oder 1');
+            
             $this->setAktiv($aktiv);
         }
 
@@ -209,8 +236,6 @@ class Inserat extends Form\Form {
 //            $userId->setValueOptions(array(1 => 'Administrator'));
 
             $userId->setLabel(self::LABEL_USER_ID);
-            $userId->setLabelAttributes(array('class' => 'control-label'));
-            $userId->setAttribute('class', 'input-xlarge');
 
             $this->setUserId($userId);
         }
@@ -232,8 +257,7 @@ class Inserat extends Form\Form {
             $bildschirme = new Form\Element\Select('bildschirme');
         
             $bildschirme->setLabel('Bildschirme: ');
-            $bildschirme->setLabelAttributes(array('class' => 'control-label'));
-            $bildschirme->setAttribute('class', 'input-xlarge');
+
             $bildschirme->setAttribute('multiple', true);
             $bildschirme->setValueOptions(array(1 => 'Hoersaal', 2 => 'Mensa', 3 => 'Büro', 4 => 'F-Gebäude'));
             
@@ -257,6 +281,7 @@ class Inserat extends Form\Form {
         if(empty($this->submit)){
 
             $submit = new Form\Element\Submit('submit');
+            $submit->setAttribute('class', 'btn btn-default');
             $submit->setValue('senden');
 
             $this->setSubmit($submit);
@@ -271,6 +296,6 @@ class Inserat extends Form\Form {
     }
 
 
-
-
-}
+        
+        
+    }

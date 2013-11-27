@@ -100,12 +100,17 @@ class InseratTest extends \PHPUnit_Framework_TestCase {
         $inseratFuture = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
         $inseratFuture->setStart('2098-12-12')->setEnde('2099-12-13')->setAktiv(1);
         
+        
+        $inseratCurrentActiveWithoutDisplays = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActiveWithoutDisplays->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1);
+        
+        
         $inseratCurrentActive = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
-        $inseratCurrentActive->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1);
+        $inseratCurrentActive->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1)->addBildschirm(1);
         
         
         $inseratCurrentActiveToday = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
-        $inseratCurrentActiveToday->setStart($today)->setEnde($today)->setAktiv(1);
+        $inseratCurrentActiveToday->setStart($today)->setEnde($today)->setAktiv(1)->addBildschirm(1);
         
         
         $inseratCurrentInactive = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
@@ -115,9 +120,10 @@ class InseratTest extends \PHPUnit_Framework_TestCase {
         
         $this->assertEquals('abgelaufen', $inseratOutdated->getStatus());
         $this->assertEquals('zukünftig' , $inseratFuture->getStatus());
+        $this->assertEquals('kein Bildschirm ausgewählt' , $inseratCurrentActiveWithoutDisplays->getStatus());
         $this->assertEquals('aktiv'     , $inseratCurrentActive->getStatus());
         $this->assertEquals('aktiv'     , $inseratCurrentActiveToday->getStatus());
-        $this->assertNull($inseratCurrentInactive->getStatus());
+        $this->assertEquals('nicht freigeschaltet', $inseratCurrentInactive->getStatus());
     }
     
     /**
@@ -134,12 +140,16 @@ class InseratTest extends \PHPUnit_Framework_TestCase {
         $inseratFuture = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
         $inseratFuture->setStart('2098-12-12')->setEnde('2099-12-13')->setAktiv(1);
         
-        $inseratCurrentActive = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
-        $inseratCurrentActive->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1);
+        $inseratCurrentActiveWithoutDisplays = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActiveWithoutDisplays->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1);
+        
+        
+        $inseratCurrentActiveWithOneDisplay = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActiveWithOneDisplay->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1)->addBildschirm(1);
         
         
         $inseratCurrentActiveToday = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
-        $inseratCurrentActiveToday->setStart($today)->setEnde($today)->setAktiv(1);
+        $inseratCurrentActiveToday->setStart($today)->setEnde($today)->setAktiv(1)->addBildschirm(1);
         
         
         $inseratCurrentInactive = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
@@ -149,7 +159,8 @@ class InseratTest extends \PHPUnit_Framework_TestCase {
         
         $this->assertFalse($inseratOutdated->isAngezeigt());
         $this->assertFalse($inseratFuture->isAngezeigt());
-        $this->assertTrue($inseratCurrentActive->isAngezeigt());
+        $this->assertFalse($inseratCurrentActiveWithoutDisplays->isAngezeigt());
+        $this->assertTrue($inseratCurrentActiveWithOneDisplay->isAngezeigt());
         $this->assertTrue($inseratCurrentActiveToday->isAngezeigt());
         $this->assertFalse($inseratCurrentInactive->isAngezeigt());
     }

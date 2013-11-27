@@ -1,0 +1,42 @@
+<?php
+    $this->layout()->setVariable('tasks', array( 'neu' => array(
+                    'icon'   => '/img/fachhochschule/icons/new-16.png',
+                    'target' => '/fachhochschule/infoscript/create',
+                )
+            )
+        );
+?>
+
+
+<h2 class="h2"> Infoscripte anzeigen </h2>
+
+<div class="alert-success">
+    <?php
+        foreach ($this->msgSuccess as $msg) :
+            echo $msg . '<br />';
+        endforeach;
+    ?>
+</div>
+<div class="alert-info">
+    <?php
+        foreach ($this->msgInfo as $msg) :
+            echo $msg . '<br />';
+        endforeach;
+    ?>
+</div>
+<div class="alert-danger">
+    <?php
+        foreach ($this->msgError as $msg) :
+            echo $msg . '<br />';
+        endforeach;
+    ?>
+</div>
+
+
+
+<?php
+
+
+
+echo $this->partial('base/infoscript/partial/infoscript.phtml', (array) $this->vars());
+?>

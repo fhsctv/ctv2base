@@ -15,7 +15,7 @@ class Infoscript extends Inserat {
             'fk_fh_id' => $object->getUserId()
         );
         
-        var_dump(__METHOD__, 'EXT_OBJ', $object, 'EXT_RES', $result);
+//        var_dump(__METHOD__, 'EXT_OBJ', $object, 'EXT_RES', $result);
         return $result;
     }
 

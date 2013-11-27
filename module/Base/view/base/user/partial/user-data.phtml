@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+
+            <div class="panel-heading">
+                Ihre Benutzerdaten:
+            </div>
+
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-thumbnail img-responsive" style="width: 100%" src="http://www.gravatar.com/avatar/36895c690d0f147590cde2fa768be696?s=80&d=mm&r=g"/>
+                    </div>
+
+                    <div class="col-md-8">
+                        <table class="table table-responsive table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>Benutzer- ID</th>
+                                    <td><?= $this->user->getUserId(); ?> </td>
+                                </tr>
+                                <tr>
+                                    <th>Benutzername</th>
+                                    <td><?= $this->user->getUserName(); ?> </td>
+                                </tr>
+                                <tr>
+                                    <th>Anzeigename</th>
+                                    <td><?= $this->user->getDisplayName(); ?> </td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td><?= $this->user->getEmail(); ?> </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>

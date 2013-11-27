@@ -61,6 +61,7 @@ class User extends \Zend\Form\Form {
 
         parent::__construct($name);
         
+        $this->setAttribute('class', 'form-horizontal');
         $this->setInputFilter((new Filter\User)->getInputfilter());
 
     }

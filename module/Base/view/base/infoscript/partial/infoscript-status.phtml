@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Status  </h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-responsive table-hover">
+            <tr>
+                <th>Freigeschaltet</th>
+                <td><?= ($this->infoscript->getAktiv()) ? 'ja' : 'nein';     ?></td>
+            </tr>
+            <tr>
+                <th>Angezeigt</th>
+                <td><?= ($this->infoscript->isAngezeigt()) ? 'ja' : 'nein' ?> (<?= $this->infoscript->getStatus() ?>) </td>
+            </tr>
+
+
+        </table>
+    </div>
+</div>

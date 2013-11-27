@@ -1,0 +1,30 @@
+        <table class="table table-responsive table-striped table-hover">
+
+            <thead>
+            <tr>
+                <th>Details</th>
+                <th>Start</th>
+                <th>Ende</th>
+                <th>Angezeigt</th>
+                <th>Url</th>
+                <th>Bearbeiten</th>
+                <th>Löschen</th>
+            </tr>
+            </thead>
+            
+            <tbody>
+                <?php foreach ($this->infoscript as $value) : ?>
+                <tr>
+                    <td> <a class="btn btn-default btn-xs" href="<?= $this->actionUrls['details'] . '/id=' . $value->getInseratId() ?>">  <?php echo 'Details'    ?> </a> </td>
+                    <td> <?php echo $value->getStart();     ?>      </td>
+                    <td> <?php echo $value->getEnde();      ?>      </td>
+                    <td> <?= ($value->isAngezeigt()) ? 'ja' : 'nein' ?> (<?= $value->getStatus() ?>)  </td>
+                    <td> <?php echo $value->getUrl();   ?>      </td>
+
+                    <td> <a class="btn btn-default btn-xs" href="<?= $this->actionUrls['edit']   . '/id=' . $value->getInseratId()  ?>">  <?php echo 'Bearbeiten'    ?> </a> </td>
+                    <td> <a class="btn btn-danger btn-xs"  href="<?= $this->actionUrls['delete'] . '/id=' . $value->getInseratId()  ?>">  <?php echo 'Löschen'       ?> </a> </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+
+        </table>

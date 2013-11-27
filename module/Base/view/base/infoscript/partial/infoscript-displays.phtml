@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Bildschirme  </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-responsive table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID                     </th>
+                            <th>BESCHREIBUNG           </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->infoscript->getBildschirme() as $bildschirm) : ?>
+                        <tr>
+                            <td><?= $bildschirm; ?></td>
+                            <td></td>
+                            <td><a class="btn-sm btn-danger pull-right" href=" <?=$this->deleteUrl . '/id=' . $this->infoscript->getInseratId() . "/display=$bildschirm" ?> "> löschen </a></td>
+                        </tr>
+                        <?php endforeach; ?>
+
+                        <?php foreach ($this->bildschirme as $bildschirm) : ?>
+                        <tr>
+                            <td><?= $bildschirm; ?></td>
+                            <td></td>
+                            <td><a class="btn-sm btn-success pull-right" href=" <?=$this->addUrl . '/id=' . $this->infoscript->getInseratId() . "/display=$bildschirm" ?> "> hinzufügen </a></td>
+                        </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>

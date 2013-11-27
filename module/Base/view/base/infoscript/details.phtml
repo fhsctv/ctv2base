@@ -1,0 +1,64 @@
+
+<h2>Infoscript Details</h2>
+
+<div class="alert-success">
+    <?php
+        foreach ($this->msgSuccess as $msg) :
+            echo $msg . '<br />';
+        endforeach;
+    ?>
+</div>
+<div class="alert-info">
+    <?php
+        foreach ($this->msgInfo as $msg) :
+            echo $msg . '<br />';
+        endforeach;
+    ?>
+</div>
+<div class="alert-danger">
+    <?php
+        foreach ($this->msgError as $msg) :
+            echo $msg . '<br />';
+        endforeach;
+    ?>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <?php echo $this->partial('base/infoscript/partial/infoscript-meta.phtml'); ?>
+        
+    </div>
+    
+    <div class="col-md-6">
+        <?php echo $this->partial('base/infoscript/partial/infoscript-displays.phtml'); ?>
+        
+    </div>
+    
+    <div class="col-md-6">
+        <?php echo $this->partial('base/infoscript/partial/infoscript-status.phtml'); ?>
+    </div>
+
+</div>
+
+<div class="panel-body">
+        <?php echo $this->partial('base/infoscript/partial/infoscript-preview.phtml'); ?>
+</div>
+
+
+
+<?php
+
+    /*
+     * View- Variablen
+     * -------------------------------------------------------------------------
+     * $this->infoscript Infoscript, dessen Details angezeigt werden sollen
+     * Test mit var_dump($this->infoscript);
+     * Zugriff auf Eigenschaften über get- Methoden
+     * 
+     * $this->deleteUrl Url, die zum Löschen eines Infoscripts von einem
+     * bestimmten Bildschirm führt.
+     * inseratId und bildschirmId müssen als Parameter angehängt werden.
+     */
+
+?>

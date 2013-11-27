@@ -51,6 +51,7 @@ class Delete extends Form\Form {
         if(empty($this->yes)){
             
             $yes = new Form\Element\Submit('delete');
+            $yes->setAttribute('class', 'btn btn-default btn-lg');
             $yes->setValue('Ja');
             
             $this->setYes($yes);
@@ -71,6 +72,7 @@ class Delete extends Form\Form {
         if(empty($this->no)){
             
             $no = new Form\Element\Submit('delete');
+            $no->setAttribute('class', 'btn btn-default btn-lg');
             $no->setValue('Nein');
             
             $this->setNo($no);

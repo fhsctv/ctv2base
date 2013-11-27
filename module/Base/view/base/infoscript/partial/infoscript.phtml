@@ -1,0 +1,72 @@
+
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#aktive"      data-toggle="tab">Aktive</a></li>
+    <li>               <a href="#abgelaufene" data-toggle="tab">Abgelaufene</a></li>
+    <li>               <a href="#zukuenftige" data-toggle="tab">Zukünftige</a></li>
+    <li>               <a href="#inaktive"    data-toggle="tab">Warten auf Freischaltung</a></li>
+</ul>
+
+<div id='content' class="tab-content">
+
+    <div class="tab-pane active" id="aktive">
+        
+        <?php
+        echo $this->partial('base/infoscript/partial/infoscript-table.phtml', [
+
+            'infoscript' => $this->current,
+            'actionUrls' => $this->actionUrls,
+        ]);
+        ?>
+
+    </div>
+
+    <div class="tab-pane" id="abgelaufene">
+
+        <?php
+        echo $this->partial('base/infoscript/partial/infoscript-table.phtml', [
+
+            'infoscript' => $this->outdated,
+            'actionUrls' => $this->actionUrls,
+        ]);
+        ?>
+
+    </div>
+
+    <div class="tab-pane" id="zukuenftige">
+        
+        <?php
+        echo $this->partial('base/infoscript/partial/infoscript-table.phtml', [
+
+            'infoscript' => $this->future,
+            'actionUrls' => $this->actionUrls,
+        ]); 
+        ?>
+        
+    </div>
+
+    <div class="tab-pane" id="inaktive">
+
+        <?php
+        echo $this->partial('base/infoscript/partial/infoscript-table.phtml', [
+
+            'infoscript' => $this->inactive,
+            'actionUrls' => $this->actionUrls,
+        ]);
+        ?>
+        
+    </div>
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+    <?php //var_dump($this->user);?>
+
+</div>
