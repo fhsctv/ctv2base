@@ -3,7 +3,9 @@
 
 namespace Base\Form;
 
-class User extends \Zend\Form\Form {
+use Zend\Form;
+
+class User extends Form\Form {
 
     /**
      * Versteckte Id des Benutzers.
@@ -66,6 +68,21 @@ class User extends \Zend\Form\Form {
 
     }
 
+    //TODO eine abstrakte form klasse erstellen und methode eine ebene höher versetzen
+    protected function setClassAttributes() {
+        
+        foreach ($this->getElements() as $element) {
+            
+            if($element instanceof Form\Element\Hidden || $element instanceof Form\Element\Submit){
+                continue;
+            }
+            
+            $element->setAttribute('class', 'form-control');
+            $element->setLabelAttributes(['class' => 'control-label']);
+        }
+        
+        return $this;
+    }
     
     public function getUserId() {
 

@@ -26,6 +26,8 @@ class Fachhochschule extends User {
         $this->add($this->getState());
         $this->add($this->getSubmit());
         
+        $this->setClassAttributes();
+        
         $this->setHydrator(new \Base\Form\Hydrator\Fachhochschule());
         $this->setObject(new \Base\Model\Entity\Fachhochschule());
     }
