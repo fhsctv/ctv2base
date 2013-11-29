@@ -131,14 +131,14 @@ class Inserat {
 
     public function setBildschirme(array $bildschirme) {
 
-        $this->bildschirme = $bildschirme;
+        foreach ($bildschirme as $bildschirm) {
+            $this->addBildschirm($bildschirm);
+        }
+        
         return $this;
     }
 
-    /**
-     * @todo Benutze Bildschirmentität als Parameter anstelle der Zahl!
-     */
-    public function addBildschirm($bildschirm) {
+    public function addBildschirm(Bildschirm $bildschirm) {
 
         array_push($this->bildschirme, $bildschirm);
         return $this;

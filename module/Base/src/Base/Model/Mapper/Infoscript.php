@@ -9,10 +9,15 @@ use Base\Model\Entity\Infoscript as Entity;
 class Infoscript {
 
     protected $tableInserat;
-    protected $tableInseratBildschirmLinker;
     protected $tableInfoscript;
+    protected $tableInseratBildschirmLinker;
+    /**
+     *
+     * @var \Base\Model\Table\Bildschirm
+     */
+    protected $tableBildschirm;
 
-    protected $connection;
+    use ConnectionTrait;
 
 
 
@@ -23,7 +28,7 @@ class Infoscript {
                 
             function (Select $select){
                 
-                $this->getJoin($select);
+                $select->join('inserat', 'infoscript.inserat_id = inserat.inserat_id');
                 return $select;
             }
         );
@@ -51,7 +56,7 @@ class Infoscript {
                 
                 $table = $this->getTableInfoscript()->getTableGateway()->getTable();
             
-                $select = $this->getJoin($select);
+                $select->join('inserat', 'infoscript.inserat_id = inserat.inserat_id');
                 $select->where("$table . inserat_id = $id");
                 return $select;
             }
@@ -77,7 +82,7 @@ class Infoscript {
                 
                 $table = $this->getTableInfoscript()->getTableGateway()->getTable();
             
-                $select = $this->getJoin($select);
+                $select->join('inserat', 'infoscript.inserat_id = inserat.inserat_id');
                 $select->where("$table . fk_fh_id = $userId");
             
             }
@@ -114,19 +119,25 @@ class Infoscript {
     }
 
 
-    private function getJoin(Select $select){
-        
-        $select->join('inserat', 'infoscript.inserat_id = inserat.inserat_id');
-        
-        return $select;
-    }
-
     //TODO schreibe eigenes hydratingResultSet, welches erst beim iterieren durch den cursor die abhängigkeiten aus der datenbank holt
     private function getBildschirme(\Base\Model\Entity\Inserat $infoscript){
         
-        $bildschirme = $this->getTableInseratBildschirmLinker()->getByInseratId($infoscript->getInseratId());
+        $inseratId = $infoscript->getInseratId();
+        
+        $bildschirme = $this->getTableBildschirm()->getTableGateway()->select(
+          
+                function (Select $select) use ($inseratId) {
+                    
+                    $select->join('inserat_bildschirm_linker', 'bildschirm.bildschirm_id = inserat_bildschirm_linker.bildschirm_id');
+                    $select->where("inserat_bildschirm_linker.inserat_id = $inseratId");
+            
+                    return $select;
+                }
+                
+        );
+        
         foreach($bildschirme as $bildschirm){
-            $infoscript->addBildschirm($bildschirm->bildschirm_id);
+            $infoscript->addBildschirm($bildschirm);
         }
         
         return $infoscript;
@@ -223,6 +234,8 @@ class Infoscript {
     }
 
     
+    // <editor-fold defaultstate="collapsed" desc="Table Getters & Setters">
+
     public function getTableInserat() {
         return $this->tableInserat;
     }
@@ -241,7 +254,25 @@ class Infoscript {
         return $this;
     }
 
-        
+    /**
+     * 
+     * @return \Base\Model\Table\Bildschirm
+     */
+    public function getTableBildschirm() {
+        return $this->tableBildschirm;
+    }
+
+    /**
+     * 
+     * @param \Base\Model\Table\Bildschirm $tableBildschirm
+     * @return \Base\Model\Mapper\Bildschirm
+     */
+    public function setTableBildschirm(\Base\Model\Table\Bildschirm $tableBildschirm) {
+        $this->tableBildschirm = $tableBildschirm;
+        return $this;
+    }
+
+
     public function getTableInfoscript() {
         return $this->tableInfoscript;
     }
@@ -251,13 +282,6 @@ class Infoscript {
         return $this;
     }
 
-    
-    public function getConnection() {
-        return $this->connection;
-    }
+    // </editor-fold>
 
-    public function setConnection($connection) {
-        $this->connection = $connection;
-        return $this;
-    }
 }

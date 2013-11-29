@@ -15,6 +15,7 @@ class Infoscript implements FactoryInterface {
         $mapper->setTableInfoscript($serviceLocator->get(C::SERVICE_TABLE_INFOSCRIPT));
         $mapper->setTableInserat($serviceLocator->get(C::SERVICE_TABLE_INSERAT));
         $mapper->setTableInseratBildschirmLinker($serviceLocator->get(C::SERVICE_TABLE_INSERATBILDSCHIRMLINKER));
+        $mapper->setTableBildschirm($serviceLocator->get(C::SERVICE_TABLE_BILDSCHIRM));
         
         $mapper->setConnection($serviceLocator->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection());
 

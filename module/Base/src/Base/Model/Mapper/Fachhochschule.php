@@ -11,9 +11,7 @@ class Fachhochschule {
     protected $tableUser;
     protected $tableFachhochschule;
 
-    protected $connection;
-
-
+    use ConnectionTrait;
 
 
     public function fetchAll(){
@@ -163,16 +161,4 @@ class Fachhochschule {
         return $this;
     }
 
-        
-
-
-    
-    public function getConnection() {
-        return $this->connection;
-    }
-
-    public function setConnection($connection) {
-        $this->connection = $connection;
-        return $this;
-    }
 }
