@@ -1,0 +1,41 @@
+
+<?php if($this->messages->getErrorMessages()) : ?>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        Fehler!
+    </div>
+    
+    <div class="panel-body">
+        <?php array_map(function ($msg) { echo $msg . '<br />'; }, $this->messages->getErrorMessages()); ?>
+    </div>    
+</div>
+<?php endif; ?>
+
+
+
+
+<?php if($this->messages->getInfoMessages()) : ?>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Info!
+    </div>
+    
+    <div class="panel-body">
+        <?php array_map(function ($msg) { echo $msg . '<br />'; }, $this->messages->getInfoMessages()); ?>
+    </div>    
+</div>
+<?php endif; ?>
+
+
+
+<?php if($this->messages->getSuccessMessages()) : ?>
+<div class="panel panel-success">
+    <div class="panel-heading">
+        Info!
+    </div>
+    
+    <div class="panel-body">
+        <?php array_map(function ($msg) { echo $msg . '<br />'; }, $this->messages->getSuccessMessages()); ?>
+    </div>    
+</div>
+<?php endif; ?>

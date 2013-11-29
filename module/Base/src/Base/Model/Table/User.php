@@ -22,6 +22,27 @@ class User implements HydratorAwareInterface {
         return $this->getTableGateway()->select();
         
     }
+    
+    public function getById($id) {
+        
+        $id = (int) $id;
+        
+        $resultSet = $this->getTableGateway()->select(
+        
+                function (Select $select) use ($id) {
+                    
+                    return $select->where("ctv.user.user_id = $id");
+                }
+        );
+
+        $result = $resultSet->current();
+        
+        if(!$result) {
+            throw new \Exception("User with id $id not found!");
+        }
+        
+        return $result;
+    }
 
     public function save(\Base\Model\Entity\User $user){
 

@@ -17,7 +17,7 @@
                 <tr>
                     <td><?= $bildschirm->getId(); ?></td>
                     <td><?= $bildschirm->getBeschreibung() ?> </td>
-                    <td><a class="btn-sm btn-danger pull-right" href=" <?=$this->deleteUrl . '/id=' . $this->infoscript->getInseratId() . "/display=" . $bildschirm->getId(); ?> "> löschen </a></td>
+                    <td><a class="btn-sm btn-danger pull-right" href=" <?=$this->actionUrls['delete'] . '/id=' . $this->infoscript->getInseratId() . "/display=" . $bildschirm->getId(); ?> "> löschen </a></td>
                 </tr>
                 <?php endforeach; ?>
 
@@ -25,7 +25,7 @@
                 <tr>
                     <td><?= $bildschirm->getId(); ?></td>
                     <td><?= $bildschirm->getBeschreibung(); ?> </td>
-                    <td><a class="btn-sm btn-success pull-right" href=" <?=$this->addUrl . '/id=' . $this->infoscript->getInseratId() . "/display=" . $bildschirm->getId(); ?> "> hinzufügen </a></td>
+                    <td><a class="btn-sm btn-success pull-right" href=" <?=$this->actionUrls['add'] . '/id=' . $this->infoscript->getInseratId() . "/display=" . $bildschirm->getId(); ?> "> hinzufügen </a></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

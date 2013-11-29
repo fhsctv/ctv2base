@@ -42,7 +42,7 @@ class User extends Form\Form {
      * @var \Zend\Form\Element\Password
      */
     protected $passwordRepeat;
-    
+
     /**
      * Status des Benutzerkontos:
      * 1 : aktiv
@@ -54,7 +54,7 @@ class User extends Form\Form {
 
     /**
      * Button zum Absenden des Formulars
-     * @var \Zend\Form\Element\Submit 
+     * @var \Zend\Form\Element\Submit
      */
     protected $submit;
 
@@ -62,28 +62,28 @@ class User extends Form\Form {
     public function __construct($name = 'user') {
 
         parent::__construct($name);
-        
+
         $this->setAttribute('class', 'form-horizontal');
         $this->setInputFilter((new Filter\User)->getInputfilter());
 
     }
 
-    //TODO eine abstrakte form klasse erstellen und methode eine ebene höher versetzen
+    //:TODO eine abstrakte form klasse erstellen und methode eine ebene höher versetzen oder Trait
     protected function setClassAttributes() {
-        
+
         foreach ($this->getElements() as $element) {
-            
+
             if($element instanceof Form\Element\Hidden || $element instanceof Form\Element\Submit){
                 continue;
             }
-            
+
             $element->setAttribute('class', 'form-control');
             $element->setLabelAttributes(['class' => 'control-label']);
         }
-        
+
         return $this;
     }
-    
+
     public function getUserId() {
 
         if(!$this->userId){

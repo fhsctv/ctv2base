@@ -12,13 +12,13 @@ use Base\Model\Entity\Infoscript   as InfoscriptEntity;
 //use Base\Model\Entity\Url          as UrlEntity;
 
 class Infoscript implements \Zend\ServiceManager\FactoryInterface {
-    
+
     const TABLE    = 'infoscript';
 
 
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
 
-        //TODO use ServiceManager
+        //:TODO use ServiceManager
         $hydrator            = new Hydrator();
         $objectPrototype     = new InfoscriptEntity();
         $resultSetPrototype  = new HydratingResultSet($hydrator, $objectPrototype);

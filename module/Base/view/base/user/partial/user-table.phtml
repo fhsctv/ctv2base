@@ -1,5 +1,5 @@
-<?php $aktivieren   = "<a class=\"btn btn-default\"  href=\"#\" > aktivieren </a> ";   ?>
-<?php $deaktivieren = "<a class=\"btn btn-default\"  href=\"#\" > deaktivieren </a> ";   ?>
+<?php $aktivieren   = "<a class=\"btn btn-success\"  href=\"#\" > aktivieren </a> ";   ?>
+<?php $deaktivieren = "<a class=\"btn btn-warning\"  href=\"#\" > deaktivieren </a> ";   ?>
 
 <table class="table table-striped table-hover">
     
@@ -20,7 +20,7 @@
     <tbody>
         <?php foreach ($this->users as $user) : ?>
         <tr>
-            <td><a class="btn btn-default" href="#">Details</a></td>
+            <td><a class="btn btn-default" href="<?= $this->actionUrls['details'] . '/id=' . $user->getUserId() ?>">Details</a></td>
             <td><?= $user->getUserId() ?></td>
             <td><?= $user->getUserName() ?></td>
             <td><?= $user->getDisplayName() ?></td>

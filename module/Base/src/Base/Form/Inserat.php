@@ -75,7 +75,7 @@ abstract class Inserat extends Form\Form {
     public function __construct($name = null) {
 
         parent::__construct($name);
-        
+
     }
 
 //    public function getData($flag = null) {
@@ -84,19 +84,19 @@ abstract class Inserat extends Form\Form {
 //
 //        return $obj;
 //    }
-    
+
     protected function setClassAttributes() {
-        
+
         foreach ($this->getElements() as $element) {
-            
+
             if($element instanceof Form\Element\Hidden || $element instanceof Form\Element\Submit){
                 continue;
             }
-            
+
             $element->setAttribute('class', 'form-control');
             $element->setLabelAttributes(['class' => 'control-label']);
         }
-        
+
         return $this;
     }
 
@@ -127,7 +127,7 @@ abstract class Inserat extends Form\Form {
 
             $start = new Form\Element\Date('start');
             $start->setLabel(self::LABEL_START, null, 'append');
-            
+
             $start->setValue(date('Y-m-d', strtotime('+1 days')));
 
             $this->setStart($start);
@@ -168,20 +168,20 @@ abstract class Inserat extends Form\Form {
 
             $url = new Form\Element\Url('url');
             $url->setLabel(self::LABEL_URL);
-            
+
             $url->setAttribute('placeholder', 'Url des Inserats');
-            
+
 //TODO
 //            http://devincharge.com/bootstrapping-zf2-forms/ vielleicht mal das hier angucken für prepend und append optionen
 //            $url->setOptions(
 //                [
-//                    'bootstrap' => 
+//                    'bootstrap' =>
 //                    [
 //                        'append' => ['$'],
 //                    ]
 //                ]
 //            );
-            
+
             $this->setUrl($url);
         }
 
@@ -201,13 +201,13 @@ abstract class Inserat extends Form\Form {
         if(!$this->aktiv){
 
             $aktiv = new Form\Element\Text('aktiv');
-            
+
             $aktiv->setLabel(self::LABEL_AKTIV);
-            
+
             $aktiv->setValue(0);
-            
+
             $aktiv->setAttribute('placeholder', '0 oder 1');
-            
+
             $this->setAktiv($aktiv);
         }
 
@@ -229,10 +229,10 @@ abstract class Inserat extends Form\Form {
         if(!$this->userId){
 
 //            $userId = new Form\Element\Hidden('user_id');
-            
+
             $userId = new Form\Element\Text('user_id');
 
-            //TODO aus Datenbank holen, Tabelle FH
+            //:FIXME aus Datenbank holen, Tabelle FH
 //            $userId->setValueOptions(array(1 => 'Administrator'));
 
             $userId->setLabel(self::LABEL_USER_ID);
@@ -251,21 +251,21 @@ abstract class Inserat extends Form\Form {
 
 
     public function getBildschirme() {
-        
+
         if(!$this->bildschirme){
-            
+
             $bildschirme = new Form\Element\Select('bildschirme');
-        
+
             $bildschirme->setLabel('Bildschirme: ');
 
             $bildschirme->setAttribute('multiple', true);
             $bildschirme->setValueOptions(array(1 => 'Hoersaal', 2 => 'Mensa', 3 => 'Büro', 4 => 'F-Gebäude'));
-            
+
             $this->setBildschirme($bildschirme);
         }
-        
+
         return $this->bildschirme;
-        
+
     }
 
     public function setBildschirme($bildschirme) {
@@ -273,7 +273,7 @@ abstract class Inserat extends Form\Form {
         return $this;
     }
 
-    
+
 
 
     public function getSubmit() {
@@ -296,6 +296,6 @@ abstract class Inserat extends Form\Form {
     }
 
 
-        
-        
+
+
     }
