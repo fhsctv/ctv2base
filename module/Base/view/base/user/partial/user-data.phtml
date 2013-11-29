@@ -6,12 +6,44 @@
 
             <div class="panel-body">
 
-                <div class="row">
-                    <div class="visible-lg col-md-4">
-                        <img class="visible-lg img-thumbnail img-responsive" style="width: 100%" src="http://www.gravatar.com/avatar/36895c690d0f147590cde2fa768be696?s=80&d=mm&r=g"/>
+                <div class="visible-lg row">
+                    <div class="col-sm-2">
+                        <img class="img-thumbnail img-responsive" style="width: 200px" src="http://www.gravatar.com/avatar/36895c690d0f147590cde2fa768be696?s=80&d=mm&r=g"/>
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-sm-10">
+                        <table class="table table-responsive table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>Benutzer- ID</th>
+                                    <td><?= $this->user->getUserId(); ?> </td>
+                                </tr>
+                                <tr>
+                                    <th>Benutzername</th>
+                                    <td><?= $this->user->getUserName(); ?> </td>
+                                </tr>
+                                <tr>
+                                    <th>Anzeigename</th>
+                                    <td><?= $this->user->getDisplayName(); ?> </td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td><a href="mailto:<?= $this->user->getEmail(); ?>"><?= $this->user->getEmail(); ?></a> </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="visible-md visible-sm visible-xs row">
+
+                    <div class="col-sm-3">
+                        <img class="img-thumbnail img-responsive" style="width: 200px" src="http://www.gravatar.com/avatar/36895c690d0f147590cde2fa768be696?s=80&d=mm&r=g"/>
+                    </div>
+
+                    <div class="col-sm-9">
                         <table class="table table-responsive table-hover">
                             <tbody>
                                 <tr>

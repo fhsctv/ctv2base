@@ -39,7 +39,7 @@ return array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '/[:controller[/:action[/id=:id[/display=:display]]]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -74,6 +74,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Base\Controller\Index'       => 'Base\Controller\IndexController',
+            'Base\Controller\Infoscript'  => 'Base\Controller\InfoscriptController',
             'Base\Controller\DisplayLink' => 'Base\Controller\DisplayLinkController',
         ),
     ),

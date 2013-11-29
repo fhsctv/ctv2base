@@ -10,7 +10,7 @@
 <div id='content' class="tab-content">
 
     <div class="tab-pane active" id="aktive">
-        
+
         <?php
         echo $this->partial('base/infoscript/partial/infoscript-table.phtml', [
 
@@ -34,15 +34,15 @@
     </div>
 
     <div class="tab-pane" id="zukuenftige">
-        
+
         <?php
         echo $this->partial('base/infoscript/partial/infoscript-table.phtml', [
 
             'infoscript' => $this->future,
             'actionUrls' => $this->actionUrls,
-        ]); 
+        ]);
         ?>
-        
+
     </div>
 
     <div class="tab-pane" id="inaktive">
@@ -54,7 +54,7 @@
             'actionUrls' => $this->actionUrls,
         ]);
         ?>
-        
+
     </div>
 
 </div>
