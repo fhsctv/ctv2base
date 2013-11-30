@@ -8,9 +8,24 @@ use Base\Model\Entity\Infoscript as Entity;
 
 class Infoscript {
 
+    /**
+     *
+     * @var \Base\Model\Table\Inserat
+     */
     protected $tableInserat;
+
+    /**
+     *
+     * @var \Base\Model\Table\Infoscript
+     */
     protected $tableInfoscript;
+
+    /**
+     *
+     * @var \Base\Model\Table\InseratBildschirmLinker
+     */
     protected $tableInseratBildschirmLinker;
+
     /**
      *
      * @var \Base\Model\Table\Bildschirm
@@ -18,8 +33,6 @@ class Infoscript {
     protected $tableBildschirm;
 
     use ConnectionTrait;
-
-
 
 
     public function fetchAll(){
@@ -44,8 +57,6 @@ class Infoscript {
 
         return $resultSet;
     }
-
-
 
     public function getById($id) {
 
@@ -212,23 +223,31 @@ class Infoscript {
         }
     }
 
-    public function delete(Entity $infoscript){
-
+    /**
+     *
+     * @param \Base\Model\Entity\Infoscript $infoscript
+     * @param bool $useTransactions Wird diese Methode innerhalb einer
+     * Transaktion aufgerufen, muss hier bei Datenbanken, die keine
+     * verschachtelten Transaktionen unterstützen, die Transaktion deaktiviert
+     * werden.
+     * @throws \Base\Model\Mapper\Exception
+     */
+    public function delete(Entity $infoscript, $useTransactions = true){
 
         try{
 
-            $this->getConnection()->beginTransaction();
+            !$useTransactions ? : $this->getConnection()->beginTransaction();
 
             //funktioniert nur mit entsprechenden cascade- constraints
             //ansonsten müssen die abhängigkeiten manuell entfernt werden
             $this->getTableInserat()->delete($infoscript->getInseratId());
 
 
-            $this->getConnection()->commit();
+            !$useTransactions ? : $this->getConnection()->commit();
         }
         catch (\Exception $e){
 
-            $this->getConnection()->rollback();
+            !$useTransactions ? : $this->getConnection()->rollback();
             throw $e;
         }
     }
@@ -236,23 +255,45 @@ class Infoscript {
 
     // <editor-fold defaultstate="collapsed" desc="Table Getters & Setters">
 
+    /**
+     *
+     * @return \Base\Model\Table\Inserat
+     */
     public function getTableInserat() {
         return $this->tableInserat;
     }
 
-    public function setTableInserat($tableInserat) {
+    /**
+     *
+     * @param \Base\Model\Table\Inserat $tableInserat
+     * @return \Base\Model\Mapper\Infoscript
+     */
+    public function setTableInserat(\Base\Model\Table\Inserat $tableInserat) {
         $this->tableInserat = $tableInserat;
         return $this;
     }
 
+
+
+    /**
+     *
+     * @return \Base\Model\Table\InseratBildschirmLinker
+     */
     public function getTableInseratBildschirmLinker() {
         return $this->tableInseratBildschirmLinker;
     }
 
-    public function setTableInseratBildschirmLinker($tableInseratBildschirmLinker) {
+    /**
+     *
+     * @param \Base\Model\Table\InseratBildschirmLinker $tableInseratBildschirmLinker
+     * @return \Base\Model\Mapper\Infoscript
+     */
+    public function setTableInseratBildschirmLinker(\Base\Model\Table\InseratBildschirmLinker $tableInseratBildschirmLinker) {
         $this->tableInseratBildschirmLinker = $tableInseratBildschirmLinker;
         return $this;
     }
+
+
 
     /**
      *
@@ -273,14 +314,25 @@ class Infoscript {
     }
 
 
+    
+    /**
+     *
+     * @return \Base\Model\Table\Infoscript
+     */
     public function getTableInfoscript() {
         return $this->tableInfoscript;
     }
 
-    public function setTableInfoscript($tableInfoscript) {
+    /**
+     *
+     * @param \Base\Model\Table\Infoscript $tableInfoscript
+     * @return \Base\Model\Mapper\Infoscript
+     */
+    public function setTableInfoscript(\Base\Model\Table\Infoscript $tableInfoscript) {
         $this->tableInfoscript = $tableInfoscript;
         return $this;
     }
+
 
     // </editor-fold>
 
