@@ -12,21 +12,21 @@ class Infoscript extends Inserat {
 
     /**
      *
+     * @var array
+     */
+    protected $columns = [];
+
+    /**
+     *
      * @var string
      */
-    protected $title;
+    protected $list;
 
     /**
      *
      * @var array
      */
-    protected $text = array();
-
-    /**
-     *
-     * @var array
-     */
-    protected $lists = array();
+    protected $pictures = [];
 
 
     /**
@@ -48,82 +48,86 @@ class Infoscript extends Inserat {
     }
 
 
+    /**
+     *
+     * @return bool
+     */
+    public function hasColumns() {
+        return (count($this->getColumns()) !== 0);
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function getColumns() {
+        return $this->columns;
+    }
+
+    /**
+     *
+     * @param int $idx
+     * @return \Base\Model\Entity\Infoscript\Column
+     */
+    public function getColumn($idx) {
+
+        return $this->getColumns()[$idx];
+
+    }
+
+    /**
+     *
+     * @return \Base\Model\Entity\Infoscript\Column
+     */
+    public function getFirstColumn() {
+
+        return $this->getColumns()[0];
+    }
+
+    /**
+     * @return \Base\Model\Entity\Infoscript\Column
+     */
+    public function getSecondColumn() {
+
+        return $this->getColumns()[1];
+    }
+
+    /**
+     *
+     * @param array $columns
+     * @return \Base\Model\Entity\Infoscript
+     */
+    public function setColumns(array $columns) {
+
+        foreach ($columns as $column) {
+            $this->addColumn($column);
+        }
+
+        $this->columns = $columns;
+        return $this;
+    }
+
+    /**
+     *
+     * @param \Base\Model\Entity\Infoscript\Column $column
+     * @return \Base\Model\Entity\Infoscript
+     */
+    public function addColumn(Infoscript\Column $column) {
+
+        $column->setInfoscript($this);
+        array_push($this->columns, $column);
+        return $this;
+    }
+
+
+
 
     /**
      *
      * @return string
      */
-    public function getTitle() {
-        return $this->title;
-    }
-
-    /**
-     *
-     * @param string $title
-     * @return \Base\Model\Entity\Infoscript
-     */
-    public function setTitle($title) {
-        $this->title = $title;
-        return $this;
-    }
-
-
-
-    /**
-     *
-     * @return array
-     */
-    public function getText() {
-        return $this->text;
-    }
-
-    /**
-     *
-     * @param string $text
-     * @return \Base\Model\Entity\Infoscript
-     */
-    public function setText($text) {
-
-        $textLineArray = explode(PHP_EOL, $text);
-
-        foreach ($textLineArray as $textLine) {
-            $this->addTextLine($textLine);
-        }
-
-        return $this;
-    }
-
-    /**
-     *
-     * @param string $textLine
-     * @return \Base\Model\Entity\Infoscript
-     */
-    public function addTextLine($textLine) {
-
-        $txtLine = new TextLine($textLine);
-
-        array_push($this->text, $txtLine);
-        return $this;
-    }
-
-
-
-    /**
-     *
-     * @return array
-     */
-    public function getLists() {
-        return $this->lists;
-    }
-
-    /**
-     *
-     * @param array $lists
-     * @return \Base\Model\Entity\Infoscript
-     */
-    public function setLists(array $lists) {
-        $this->lists = $lists;
-        return $this;
+    public function getList() {
+        return $this->list;
     }
 
     /**
@@ -131,10 +135,45 @@ class Infoscript extends Inserat {
      * @param string $list
      * @return \Base\Model\Entity\Infoscript
      */
-    public function addList($list) {
-
-        array_push($this->lists, $list);
+    public function setList($list) {
+        $this->list = $list;
         return $this;
     }
+
+
+
+    /**
+     *
+     * @return array
+     */
+    public function getPictures() {
+        return $this->pictures;
+    }
+
+    /**
+     *
+     * @param array $pictures
+     * @return \Base\Model\Entity\Infoscript
+     */
+    public function setPictures(array $pictures) {
+
+        foreach ($pictures as $picture) {
+            $this->addPicture($picture);
+        }
+
+        $this->pictures = $pictures;
+        return $this;
+    }
+
+    /**
+     *
+     * @return \Base\Model\Entity\Infoscript
+     */
+    public function addPicture($picture) {
+
+        array_push($this->pictures, $picture);
+        return $this;
+    }
+
 
 }

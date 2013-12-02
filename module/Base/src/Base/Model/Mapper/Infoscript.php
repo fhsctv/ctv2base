@@ -32,6 +32,13 @@ class Infoscript {
      */
     protected $tableBildschirm;
 
+    /**
+     *
+     * @var \Zend\Db\TableGateway\TableGatewayInterface
+     */
+    protected $tgwColumns;
+
+
     use ConnectionTrait;
 
 
@@ -52,6 +59,7 @@ class Infoscript {
         foreach ($resultSet as $infoscript) {
 
             $this->getBildschirme($infoscript);
+            $this->getColumns($infoscript);
 
         }
 
@@ -80,6 +88,7 @@ class Infoscript {
         }
 
         $this->getBildschirme($infoscript);
+        $this->getColumns($infoscript);
 
         return $infoscript;
     }
@@ -104,6 +113,7 @@ class Infoscript {
         foreach ($resultSet as $infoscript) {
 
             $this->getBildschirme($infoscript);
+            $this->getColumns($infoscript);
 
         }
 
@@ -114,7 +124,7 @@ class Infoscript {
 
         $bildschirmId = (int) $bildschirmId;
 
-        $infoscript = $this->getTableInfoscript()->getTableGateway()->select(
+        $resultSet = $this->getTableInfoscript()->getTableGateway()->select(
             function (Select $select) use ($bildschirmId) {
 
                 $select = $this->getJoin($select);
@@ -124,7 +134,12 @@ class Infoscript {
             }
         );
 
-        $this->getBildschirme($infoscript);
+        foreach ($resultSet as $infoscript) {
+
+            $this->getBildschirme($infoscript);
+            $this->getColumns($infoscript);
+
+        }
 
         return $infoscript;
     }
@@ -154,7 +169,17 @@ class Infoscript {
         return $infoscript;
     }
 
+    private function getColumns(\Base\Model\Entity\Infoscript $infoscript) {
 
+        $cols = $this->getTgwColumns()->select(
+                "infospalte.inserat_id = ". $infoscript->getInseratId()
+        );
+
+        foreach ($cols as $col) {
+            $infoscript->addColumn($col);
+        }
+
+    }
 
 
 
@@ -175,10 +200,11 @@ class Infoscript {
             $this->saveInserat($infoscript);
             $this->saveInfoscript($infoscript, $inserat_id);
 
-            if ($inserat_id === NULL) {
+            if (!$inserat_id) {
                 $this->saveBildschirme($infoscript);
             }
 
+            $this->saveColums($infoscript);
 
             $this->getConnection()->commit();
             return $infoscript;
@@ -216,11 +242,32 @@ class Infoscript {
 
             $data = array(
                 'inserat_id'    => $infoscript->getInseratId(),
-                'bildschirm_id' => $bildschirm,
+                'bildschirm_id' => $bildschirm->getId(),
             );
 
             $this->getTableInseratBildschirmLinker()->save($data);
         }
+    }
+
+    private function saveColums(\Base\Model\Entity\Infoscript $infoscript) {
+
+        foreach ($infoscript->getColumns() as $column) {
+            $this->saveColumn($column);
+        }
+
+    }
+
+    private function saveColumn(\Base\Model\Entity\Infoscript\Column $column){
+
+        $hydrator = new \Base\Model\Hydrator\Infoscript\Column();
+
+        if($column->hasId()) {
+            $this->getTgwColumns()->update($hydrator->extract($column));
+            return $column->getId();
+        }
+
+        $this->getTgwColumns()->insert($hydrator->extract($column));
+        return $this->getTgwColumns()->getLastInsertValue();
     }
 
     /**
@@ -314,7 +361,7 @@ class Infoscript {
     }
 
 
-    
+
     /**
      *
      * @return \Base\Model\Table\Infoscript
@@ -330,6 +377,25 @@ class Infoscript {
      */
     public function setTableInfoscript(\Base\Model\Table\Infoscript $tableInfoscript) {
         $this->tableInfoscript = $tableInfoscript;
+        return $this;
+    }
+
+
+    /**
+     *
+     * @return \Zend\Db\TableGateway\TableGatewayInterface
+     */
+    public function getTgwColumns() {
+        return $this->tgwColumns;
+    }
+
+    /**
+     *
+     * @param \Zend\Db\TableGateway\TableGatewayInterface $tgwColumns
+     * @return \Base\Model\Mapper\Infoscript
+     */
+    public function setTgwColumns(\Zend\Db\TableGateway\TableGatewayInterface $tgwColumns) {
+        $this->tgwColumns = $tgwColumns;
         return $this;
     }
 
