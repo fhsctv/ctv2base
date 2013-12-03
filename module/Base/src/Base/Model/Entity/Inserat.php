@@ -2,7 +2,7 @@
 
 namespace Base\Model\Entity;
 
-class Inserat {
+class Inserat implements IEntity {
 
     const ACTIVE   = '1';
     const INACTIVE = '0';

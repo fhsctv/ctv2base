@@ -12,8 +12,8 @@ class Bildschirm implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
         
         $table = new Table();
-        $table->setTableGateway($serviceLocator->get(C::SERVICE_TABLEGATEWAY_BILDSCHIRM));
-        $table->setHydrator($serviceLocator->get(C::SERVICE_HYDRATOR_MODEL_BILDSCHIRM));
+        $table->setTableGateway($serviceLocator->get(C::SM_TGW_BILDSCHIRM));
+        $table->setHydrator($serviceLocator->get(C::SM_HYD_MODEL_BILDSCHIRM));
         
         return $table;
     }

@@ -17,7 +17,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
     public function setUp() {
         
         $this->sm = Bootstrap::getServiceManager();
-        $this->entity = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $this->entity = $this->sm->get(C::SM_ENTITY_INSERAT);
     }
     
     /**
@@ -27,7 +27,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
     public function testNotShared(){
         
         $firstEntity  = $this->entity;
-        $secondEntity = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $secondEntity = $this->sm->get(C::SM_ENTITY_INSERAT);
         
         $this->assertSame($this->entity, $firstEntity);
         $this->assertNotSame($firstEntity, $secondEntity);

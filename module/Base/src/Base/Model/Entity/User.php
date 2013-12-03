@@ -2,7 +2,7 @@
 
 namespace Base\Model\Entity;
 
-class User {
+class User implements IEntity {
 
     const INACTIVE = '0';
     const ACTIVE   = '1';

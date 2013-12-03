@@ -66,7 +66,7 @@ class InfoscriptController extends AbstractActionController {
     public function createAction() {
 
         $service = $this->getServiceLocator()->get(C::SERVICE_INFOSCRIPT);
-        $form    = $this->getServiceLocator()->get(C::SERVICE_FORM_INFOSCRIPT);
+        $form    = $this->getServiceLocator()->get(C::SM_FORM_INFOSCRIPT);
 
         $infoscript = $service->createInfoscriptFromForm($form, $this->getRequest());
 
@@ -99,7 +99,7 @@ class InfoscriptController extends AbstractActionController {
         $service  = $this->getServiceLocator()->get(C::SERVICE_INFOSCRIPT);
         $original = $service->getById($id);
 
-        $form = $this->getServiceLocator()->get(C::SERVICE_FORM_INFOSCRIPT);
+        $form = $this->getServiceLocator()->get(C::SM_FORM_INFOSCRIPT);
         $form->bind($original);
 
         $form->isValid();
@@ -124,13 +124,13 @@ class InfoscriptController extends AbstractActionController {
             return $this->redirect()->toRoute(self::ROUTE, ['controller' => self::CONTROLLER, 'action' => self::ACTION_INDEX]);
         }
 
-        $infoscript = $this->getServiceLocator()->get(C::SERVICE_MAPPER_INFOSCRIPT)->getById($id);
+        $infoscript = $this->getServiceLocator()->get(C::SM_MAP_INFOSCRIPT)->getById($id);
 
         if(!$this->getRequest()->isPost()) {
 
             $viewModel = new ViewModel (
             [
-                'form'       => $this->getServiceLocator()->get(C::SERVICE_FORM_DELETE),
+                'form'       => $this->getServiceLocator()->get(C::SM_FORM_DELETE),
                 'id'         => $id,
                 'formAction' => $this->url()->fromRoute(self::ROUTE, array('controller' => self::CONTROLLER, 'action' => self::ACTION_DELETE, 'id' => $id)),
                 'infoscript' => $infoscript,
@@ -154,7 +154,7 @@ class InfoscriptController extends AbstractActionController {
 
         $infoscript  = $this->getServiceLocator()->get(C::SERVICE_INFOSCRIPT)->getById($id);
 
-        $bildschirmResultSet = $this->getServiceLocator()->get(C::SERVICE_TABLE_BILDSCHIRM)->fetchAll();
+        $bildschirmResultSet = $this->getServiceLocator()->get(C::SM_TBL_BILDSCHIRM)->fetchAll();
 
         //ResultSet to Array
         $bildschirme = [];

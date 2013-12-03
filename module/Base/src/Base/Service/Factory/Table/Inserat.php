@@ -12,8 +12,8 @@ class Inserat implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
         
         $table = new Table();
-        $table->setTableGateway($serviceLocator->get(C::SERVICE_TABLEGATEWAY_INSERAT));
-        $table->setHydrator($serviceLocator->get(C::SERVICE_HYDRATOR_MODEL_INSERAT));
+        $table->setTableGateway($serviceLocator->get(C::SM_TGW_INSERAT));
+        $table->setHydrator($serviceLocator->get(C::SM_HYD_MODEL_INSERAT));
         
         return $table;
     }

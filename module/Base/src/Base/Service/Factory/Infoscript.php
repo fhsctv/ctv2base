@@ -12,7 +12,7 @@ class Infoscript implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
         
         $service = new Service();
-        $service->setMapper($serviceLocator->get(C::SERVICE_MAPPER_INFOSCRIPT));
+        $service->setMapper($serviceLocator->get(C::SM_MAP_INFOSCRIPT));
         
         return $service;
         

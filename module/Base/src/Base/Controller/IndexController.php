@@ -14,7 +14,7 @@ class IndexController extends AbstractActionController {
 
     public function indexAction(){
 
-//        $bildschirmTable = $this->getServiceLocator()->get(C::SERVICE_TABLE_BILDSCHIRM);
+//        $bildschirmTable = $this->getServiceLocator()->get(C::SM_TBL_BILDSCHIRM);
 //
 //        $result = $bildschirmTable->fetchAll();
 //
@@ -22,14 +22,14 @@ class IndexController extends AbstractActionController {
 //            var_dump($r);
 //        }
 
-        $infoMapper = $this->getServiceLocator()->get(C::SERVICE_MAPPER_INFOSCRIPT);
+        $infoMapper = $this->getServiceLocator()->get(C::SM_MAP_INFOSCRIPT);
         $infoResult = $infoMapper->fetchAll();
 
         foreach ($infoResult as $i) {
             var_dump($i);
         }
 
-//        $result = $this->getServiceLocator()->get(C::SM_MAPPER_BILDSCHIRM)->getByInseratId(4);
+//        $result = $this->getServiceLocator()->get(C::SM_MAP_BILDSCHIRM)->getByInseratId(4);
 //
 //        foreach ($result as $r) {
 //            var_dump($r);

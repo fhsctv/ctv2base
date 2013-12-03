@@ -9,19 +9,19 @@ use Zend\Db\TableGateway\Feature\SequenceFeature;
 use Base\Constants as C;
 
 class Bildschirm implements \Zend\ServiceManager\FactoryInterface {
-    
-    const TABLE    = 'bildschirm';
-    const PRIMARY  = 'bildschirm_id';
+
+    const TABLE    = C::DB_TBL_BILDSCHIRM;
+    const PRIMARY  = C::DB_PK_BILDSCHIRM;
     const SEQUENCE = 'bildschirm_bildschirm_id_seq';
 
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
 
         $adapter             = $serviceLocator->get('Zend\Db\Adapter\Adapter');
-        $hydrator            = $serviceLocator->get(C::SERVICE_HYDRATOR_MODEL_BILDSCHIRM);
-        
+        $hydrator            = $serviceLocator->get(C::SM_HYD_MODEL_BILDSCHIRM);
+
         $feature             = new SequenceFeature(self::PRIMARY, self::SEQUENCE);
-        
-        $objectPrototype     = $serviceLocator->get(C::SERVICE_ENTITY_BILDSCHIRM);
+
+        $objectPrototype     = $serviceLocator->get(C::SM_ENTITY_BILDSCHIRM);
         $resultSetPrototype  = new HydratingResultSet($hydrator, $objectPrototype);
 
         return new TableGateway(self::TABLE, $adapter, $feature, $resultSetPrototype);

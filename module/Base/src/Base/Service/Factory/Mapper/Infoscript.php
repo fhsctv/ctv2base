@@ -12,11 +12,11 @@ class Infoscript implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
 
         $mapper = new Mapper();
-        $mapper->setTableInfoscript($serviceLocator->get(C::SERVICE_TABLE_INFOSCRIPT));
-        $mapper->setTableInserat($serviceLocator->get(C::SERVICE_TABLE_INSERAT));
-        $mapper->setTableInseratBildschirmLinker($serviceLocator->get(C::SERVICE_TABLE_INSERATBILDSCHIRMLINKER));
-        $mapper->setTableBildschirm($serviceLocator->get(C::SERVICE_TABLE_BILDSCHIRM));
-        $mapper->setTgwColumns($serviceLocator->get(C::SERVICE_TABLEGATEWAY_INFOSCRIPT_COLUMN));
+        $mapper->setTableInfoscript($serviceLocator->get(C::SM_TBL_INFOSCRIPT));
+        $mapper->setTableInserat($serviceLocator->get(C::SM_TBL_INSERAT));
+        $mapper->setTableInseratBildschirmLinker($serviceLocator->get(C::SM_TBL_INSERATBILDSCHIRMLINKER));
+        $mapper->setTableBildschirm($serviceLocator->get(C::SM_TBL_BILDSCHIRM));
+        $mapper->setTgwColumns($serviceLocator->get(C::SM_TGW_INFOSCRIPT_COLUMN));
 
         $mapper->setConnection($serviceLocator->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection());
 

@@ -12,8 +12,8 @@ class Infoscript implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
         
         $table = new Table();
-        $table->setTableGateway($serviceLocator->get(C::SERVICE_TABLEGATEWAY_INFOSCRIPT));
-        $table->setHydrator($serviceLocator->get(C::SERVICE_HYDRATOR_MODEL_INFOSCRIPT));
+        $table->setTableGateway($serviceLocator->get(C::SM_TGW_INFOSCRIPT));
+        $table->setHydrator($serviceLocator->get(C::SM_HYD_MODEL_INFOSCRIPT));
         
         return $table;
         

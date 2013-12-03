@@ -12,7 +12,7 @@ class InseratBildschirmLinker implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
         
         $table = new Table();
-        $table->setTableGateway($serviceLocator->get(C::SERVICE_TABLEGATEWAY_INSERATBILDSCHIRMLINKER));
+        $table->setTableGateway($serviceLocator->get(C::SM_TGW_INSERATBILDSCHIRMLINKER));
         
         
         return $table;

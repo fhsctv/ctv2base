@@ -12,8 +12,8 @@ class Fachhochschule implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
         
         $table = new Table();
-        $table->setTableGateway($serviceLocator->get(C::SM_TABLEGATEWAY_FACHHOCHSCHULE));
-        $table->setHydrator($serviceLocator->get(C::SM_HYDRATOR_MODEL_FACHHOCHSCHULE));
+        $table->setTableGateway($serviceLocator->get(C::SM_TGW_FACHHOCHSCHULE));
+        $table->setHydrator($serviceLocator->get(C::SM_HYD_MODEL_FACHHOCHSCHULE));
         
         return $table;
         

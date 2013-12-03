@@ -4,9 +4,10 @@ namespace Base\Model\Mapper;
 
 use Zend\Db\Sql\Select;
 
+use Base\Constants as C;
 use Base\Model\Entity\Fachhochschule as Entity;
 
-class Fachhochschule {
+class Fachhochschule implements IMapper {
 
     /**
      *
@@ -28,17 +29,18 @@ class Fachhochschule {
 
     use ConnectionTrait;
 
+
     /**
      *
      * @return \Zend\Db\ResultSet\ResultSetInterface
      */
-    public function fetchAll(){
+    public function findAll() {
 
         $resultSet = $this->getTableFachhochschule()->getTableGateway()->select(
 
             function (Select $select){
 
-                $this->getJoin($select);
+                $this->_joinWithUserTable($select);
                 return $select;
             }
         );
@@ -53,17 +55,17 @@ class Fachhochschule {
      * @return \Base\Model\Entity\Fachhochschule
      * @throws \Exception
      */
-    public function getById($id) {
+    public function findById($id) {
 
         $id = (int) $id;
 
         $resultSet = $this->getTableFachhochschule()->getTableGateway()->select(
+
             function (Select $select) use ($id) {
 
-                $table = $this->getTableFachhochschule()->getTableGateway()->getTable();
+                $select = $this->_joinWithUserTable($select);
+                $select->where(sprintf('%s.%s=%s', C::DB_TBL_FACHHOCHSCHULE, C::DB_PK_FACHHOCHSCHULE, $id));
 
-                $select = $this->getJoin($select);
-                $select->where("$table . user_id = $id");
                 return $select;
             }
         );
@@ -74,20 +76,67 @@ class Fachhochschule {
             throw new \Exception("User mit der Id $id nicht vorhanden");
         }
 
+        return $fachhochschule;
+    }
+
+    /**
+     *
+     * @param string $username
+     * @return \Base\Model\Entity\Fachhochschule
+     * @throws \Exception
+     */
+    public function findByUserName($username){
+
+        $resultSet = $this->findBy('username', $username);
+
+        $fachhochschule = $resultSet->current();
+
+        if(!$fachhochschule){
+            throw new \Exception("Benutzername $username nicht gefunden!");
+        }
 
         return $fachhochschule;
     }
 
     /**
      *
-     * @param \Zend\Db\Sql\Select $select
-     * @return \Zend\Db\Sql\Select
+     * @param string $email
+     * @return \Base\Model\Entity\Fachhochschule
+     * @throws \Exception
      */
-    private function getJoin(Select $select){
+    public function findByEmail($email){
 
-        $select->join('user', 'user.user_id = fachhochschule.user_id');
+        $resultSet = $this->findBy('email', $email);
 
-        return $select;
+        $fachhochschule = $resultSet->current();
+
+        if(!$fachhochschule){
+            throw new \Exception("Benutzer mit der Emailadresse $email nicht gefunden!");
+        }
+
+        return $fachhochschule;
+    }
+
+    /**
+     * Find rows by a column and its value
+     * @param string $column
+     * @param string $value
+     * @return \Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function findBy($column, $value) {
+
+        return $this->getTableFachhochschule()->getTableGateway()->select(
+
+            function (Select $select) use ($column, $value) {
+
+                $fhTable = $this->getTableFachhochschule()->getTableGateway()->getTable();
+
+                $select = $this->_joinWithUserTable($select);
+                $select->where(sprintf('%s.%s=%s', $fhTable, $column, $value));
+
+                return $select;
+            }
+        );
     }
 
 
@@ -97,7 +146,7 @@ class Fachhochschule {
      * @return \Base\Model\Entity\Fachhochschule
      * @throws \Exception
      */
-    public function save(Entity $fachhochschule){
+    public function save(\Base\Model\Entity\IEntity $fachhochschule){
 
         //user_id speichern um später zu schauen, ob sie schon da war oder nicht
         //dies wird verwendet um zu unterscheiden, ob ein insert oder ein update
@@ -111,8 +160,8 @@ class Fachhochschule {
 
             $this->getConnection()->beginTransaction();
 
-            $this->saveUser($fachhochschule);
-            $this->saveFachhochschule($fachhochschule, $user_id);
+            $this->_saveUser($fachhochschule);
+            $this->_saveFachhochschule($fachhochschule, $user_id);
 
 
             $this->getConnection()->commit();
@@ -126,47 +175,77 @@ class Fachhochschule {
         }
     }
 
-    private function saveUser($fachhochschule){
 
-        $userId = $this->getTableUser()->save($fachhochschule);
-        $fachhochschule->setUserId($userId);
-
-        return $fachhochschule;
-    }
-
-    private function saveFachhochschule($fachhochschule, $update = false){
-
-        if (!$update) {
-            return $this->getTableFachhochschule()->insert($fachhochschule);
-        }
-
-        return $this->getTableFachhochschule()->update($fachhochschule);
-
-    }
-
-
-    public function delete(Entity $fachhochschule){
+    /**
+     *
+     * @param \Base\Model\Entity\Fachhochschule $fachhochschule
+     * @param bool $useTransactions Wird diese Methode innerhalb einer
+     * Transaktion aufgerufen, muss hier bei Datenbanken, die keine
+     * verschachtelten Transaktionen unterstützen, die Transaktion deaktiviert
+     * werden.
+     * @return void
+     * @throws \Base\Model\Mapper\Exception
+     */
+    public function delete(\Base\Model\Entity\IEntity $fachhochschule, $useTransactions = true){
 
         try{
 
-            $this->getConnection()->beginTransaction();
+            !$useTransactions ? : $this->getConnection()->beginTransaction();
 
-            $this->deleteDependentInfoscripts($fachhochschule);
+//            $this->deleteDependentInfoscripts($fachhochschule);
+//
+//            $this->getTableFachhochschule()->delete($fachhochschule->getUserId());
 
-            $this->getTableFachhochschule()->delete($fachhochschule->getUserId());
+            //cascading delete
             $this->getTableUser()->delete($fachhochschule->getUserId());
 
-
-            $this->getConnection()->commit();
+            !$useTransactions ? : $this->getConnection()->commit();
         }
         catch (\Exception $e){
 
-            $this->getConnection()->rollback();
+            !$useTransactions ? : $this->getConnection()->rollback();
             throw $e;
         }
     }
 
-    private function deleteDependentInfoscripts(Entity $fachhochschule) {
+
+    // <editor-fold defaultstate="collapsed" desc="helper methods">
+
+    /**
+     *
+     * @param \Zend\Db\Sql\Select $select
+     * @return \Zend\Db\Sql\Select
+     */
+    private function _joinWithUserTable(Select $select) {
+
+        $select->join(C::DB_TBL_USER, sprintf('%s.%s=%s.%s', C::DB_TBL_USER, C::DB_PK_USER, C::DB_TBL_FACHHOCHSCHULE, C::DB_FK_FACHHOCHSCHULE_USER));
+
+        return $select;
+    }
+
+    /**
+     *
+     * @param \Base\Model\Entity\Fachhochschule $fachhochschule
+     * @return int user_id the saved Entity
+     */
+    private function _saveUser(Entity $fachhochschule) {
+
+        $userId = $this->getTableUser()->save($fachhochschule);
+        $fachhochschule->setUserId($userId);
+
+        return $userId;
+    }
+
+    private function _saveFachhochschule($fachhochschule, $user_id = false) {
+
+        if (!$user_id) {
+            return $this->getTableFachhochschule()->insert($fachhochschule);
+        }
+
+        return $this->getTableFachhochschule()->update($fachhochschule);
+        }
+
+    private function _deleteDependentInfoscripts(Entity $fachhochschule) {
 
         $infoscriptResultSet = $this->getMapperInfoscript()->getByUserId($fachhochschule->getUserId());
 
@@ -175,7 +254,9 @@ class Fachhochschule {
         }
     }
 
+    // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="getters and setters">
 
     /**
      *
@@ -232,4 +313,29 @@ class Fachhochschule {
         $this->mapperInfoscript = $mapperInfoscript;
         return $this;
     }
+
+    // </editor-fold>
+
+    // <editor-fold defaultstate="collapsed" desc="deprecated">
+    /**
+     * @deprecated use findAll instead
+     * @return \Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function fetchAll() {
+
+        return $this->findAll();
+    }
+
+    /**
+     * @deprecated use findById instead
+     * @param int $id
+     * @return \Base\Model\Entity\Fachhochschule
+     * @throws \Exception
+     */
+    public function getById($id) {
+
+        return $this->findById($id);
+    }
+    // </editor-fold>
+
 }

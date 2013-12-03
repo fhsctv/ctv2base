@@ -16,7 +16,7 @@ class DisplayLink implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
         
         $service = new Service();
-        $service->setTable($serviceLocator->get(C::SERVICE_TABLE_INSERATBILDSCHIRMLINKER));
+        $service->setTable($serviceLocator->get(C::SM_TBL_INSERATBILDSCHIRMLINKER));
         
         return $service;
     }

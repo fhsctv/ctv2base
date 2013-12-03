@@ -18,7 +18,7 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
     public function setUp(){
         
         $this->sm = Bootstrap::getServiceManager();
-        $this->hydrator = $this->sm->get(C::SERVICE_HYDRATOR_MODEL_INFOSCRIPT);
+        $this->hydrator = $this->sm->get(C::SM_HYD_MODEL_INFOSCRIPT);
         
     }
     
@@ -37,15 +37,15 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
 //            C::URL_ENDE     => '2013-01-22',
 //        );
 //        
-//        $urlDep = $this->sm->get(C::SERVICE_ENTITY_URL);
+//        $urlDep = $this->sm->get(C::SM_ENTITY_URL);
 //        
 //        $urlDep->setAdresse('http://adresse.loc')->setAktiv(1)
 //                ->setStart('2013-01-01')->setEnde('2013-01-22');
 //        
-//        $expected = $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT);
+//        $expected = $this->sm->get(C::SM_ENTITY_INFOSCRIPT);
 //        $expected->setId(1)->setUserId(22)->setUrlId(333)->setUrl($urlDep);
 //        
-//        $result = $this->hydrator->hydrate($data, $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT));
+//        $result = $this->hydrator->hydrate($data, $this->sm->get(C::SM_ENTITY_INFOSCRIPT));
 //        
 //        $this->assertEquals($expected, $result);
 //        $this->assertNotSame($expected, $result);
@@ -58,12 +58,12 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
 
     public function testExtract(){
         
-//        $urlDep = $this->sm->get(C::SERVICE_ENTITY_URL);
+//        $urlDep = $this->sm->get(C::SM_ENTITY_URL);
 //        $urlDep->setAdresse('http://adresse2.loc')->setAktiv(0)
 //                ->setStart('2013-02-01')->setEnde('2013-03-22');
 //        
 //        
-//        $obj = $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT);
+//        $obj = $this->sm->get(C::SM_ENTITY_INFOSCRIPT);
 //        $obj->setId(666)->setUserId(55)->setUrlId(4)->setUrl($urlDep);
 //        
 //        $expected = array(
@@ -95,10 +95,10 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
 //            C::URL_ENDE     => '2013-01-22',
 //        );
 //        
-//        $urlDep1 = $this->sm->get(C::SERVICE_ENTITY_URL);
+//        $urlDep1 = $this->sm->get(C::SM_ENTITY_URL);
 //        $urlDep1->setAdresse('http://adresse.loc')->setAktiv(1)->setStart('2013-01-01')->setEnde('2013-01-22');
 //        
-//        $expected1 = $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT);
+//        $expected1 = $this->sm->get(C::SM_ENTITY_INFOSCRIPT);
 //        $expected1->setId(1)->setUserId(22)->setUrlId(333)->setUrl($urlDep1);
 //        
 //        
@@ -113,21 +113,21 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
 //            C::URL_ENDE     => '2010-10-01',
 //        );
 //        
-//        $urlDep2 = $this->sm->get(C::SERVICE_ENTITY_URL);
+//        $urlDep2 = $this->sm->get(C::SM_ENTITY_URL);
 //        $urlDep2->setAdresse('http://debug.loc')->setAktiv(0)->setStart('2010-12-30')->setEnde('2010-10-01');
 //        
-//        $expected2 = $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT);
+//        $expected2 = $this->sm->get(C::SM_ENTITY_INFOSCRIPT);
 //        $expected2->setId(999)->setUserId(88)->setUrlId(7)->setUrl($urlDep2);
 //        
 //        
 //        $dataArray = array($data1, $data2);
 //        
 //        
-//        $result1 = $this->hydrator->hydrate($data1, $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT));
-//        $result2 = $this->hydrator->hydrate($data2, $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT));
+//        $result1 = $this->hydrator->hydrate($data1, $this->sm->get(C::SM_ENTITY_INFOSCRIPT));
+//        $result2 = $this->hydrator->hydrate($data2, $this->sm->get(C::SM_ENTITY_INFOSCRIPT));
 //        
 //        
-//        $resultSet = new \Zend\Db\ResultSet\HydratingResultSet($this->hydrator, $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT));
+//        $resultSet = new \Zend\Db\ResultSet\HydratingResultSet($this->hydrator, $this->sm->get(C::SM_ENTITY_INFOSCRIPT));
 //        $resultSet->initialize($dataArray);
 //        $resultSet->buffer();
 //        

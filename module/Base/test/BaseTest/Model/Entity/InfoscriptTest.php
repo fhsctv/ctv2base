@@ -17,7 +17,7 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
     public function setUp(){
         
         $this->sm = Bootstrap::getServiceManager();
-        $this->entity = $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT);
+        $this->entity = $this->sm->get(C::SM_ENTITY_INFOSCRIPT);
     }
     
     /**
@@ -27,7 +27,7 @@ class InfoscriptTest extends \PHPUnit_Framework_TestCase {
     public function testNotShared(){
         
         $firstEntity  = $this->entity;
-        $secondEntity = $this->sm->get(C::SERVICE_ENTITY_INFOSCRIPT);
+        $secondEntity = $this->sm->get(C::SM_ENTITY_INFOSCRIPT);
         
         $this->assertSame($this->entity, $firstEntity);
         $this->assertNotSame($firstEntity, $secondEntity);

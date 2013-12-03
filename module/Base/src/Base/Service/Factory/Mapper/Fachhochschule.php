@@ -12,9 +12,9 @@ class Fachhochschule implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
 
         $mapper = new Mapper();
-        $mapper->setTableUser($serviceLocator->get(C::SM_TABLE_USER));
-        $mapper->setTableFachhochschule($serviceLocator->get(C::SM_TABLE_FACHHOCHSCHULE));
-        $mapper->setMapperInfoscript($serviceLocator->get(C::SERVICE_MAPPER_INFOSCRIPT));
+        $mapper->setTableUser($serviceLocator->get(C::SM_TBL_USER));
+        $mapper->setTableFachhochschule($serviceLocator->get(C::SM_TBL_FACHHOCHSCHULE));
+        $mapper->setMapperInfoscript($serviceLocator->get(C::SM_MAP_INFOSCRIPT));
 
         $mapper->setConnection($serviceLocator->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection());
 

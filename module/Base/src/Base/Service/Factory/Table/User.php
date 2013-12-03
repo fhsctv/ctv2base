@@ -12,8 +12,8 @@ class User implements FactoryInterface {
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
         
         $table = new Table();
-        $table->setTableGateway($serviceLocator->get(C::SM_TABLEGATEWAY_USER));
-        $table->setHydrator($serviceLocator->get(C::SM_HYDRATOR_MODEL_USER));
+        $table->setTableGateway($serviceLocator->get(C::SM_TGW_USER));
+        $table->setHydrator($serviceLocator->get(C::SM_HYD_MODEL_USER));
         
         return $table;
     }

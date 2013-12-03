@@ -9,12 +9,12 @@ use Base\Constants as C;
 
 class Fachhochschule implements \Zend\ServiceManager\FactoryInterface {
 
-    const TABLE    = 'fachhochschule';
+    const TABLE    = C::DB_TBL_FACHHOCHSCHULE;
 
 
     public function createService(\Zend\ServiceManager\ServiceLocatorInterface $serviceLocator) {
 
-        $hydrator            = $serviceLocator->get(C::SM_HYDRATOR_MODEL_FACHHOCHSCHULE);
+        $hydrator            = $serviceLocator->get(C::SM_HYD_MODEL_FACHHOCHSCHULE);
         $objectPrototype     = $serviceLocator->get(C::SM_ENTITY_FACHHOCHSCHULE);
         $resultSetPrototype  = new HydratingResultSet($hydrator, $objectPrototype);
 

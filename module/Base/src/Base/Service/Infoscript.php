@@ -15,6 +15,12 @@ class Infoscript {
 
     protected $mapper;
 
+    /**
+     *
+     * @param \Base\Form\Infoscript $form
+     * @param \Zend\Http\PhpEnvironment\Request $request
+     * @return Base\Model\Entity\Infoscript | false
+     */
     public function createInfoscriptFromForm(Form $form, Request $request) {
 
         if(!$request->isPost()){
@@ -34,32 +40,43 @@ class Infoscript {
     }
 
 
-    public function fetchAll(){
+    /**
+     *
+     * @return \Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function findAll(){
 
-        return $this->getMapper()->fetchAll();
+        return $this->getMapper()->findAll();
     }
 
     /**
-     * @deprecated
+     *
+     * @param int $id
+     * @return \Base\Model\Entity\Infoscript
      */
-    public function get($id){
+    public function findById($id){
 
         return $this->getMapper()->getById($id);
     }
 
-    public function getById($id){
-
-        return $this->getMapper()->getById($id);
-    }
-
-    public function getByUserId($userId){
+    /**
+     *
+     * @param int $userId
+     * @return \Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function findByUserId($userId){
 
         return $this->getMapper()->getByUserId($userId);
     }
 
-    public function getByBildschirmId($bildschirmId){
+    /**
+     *
+     * @param id $displayId
+     * @return \Zend\Db\ResultSet\ResultSetInterface
+     */
+    public function findByDisplayId($displayId){
 
-        return $this->getMapper()->getByBildschirmId($bildschirmId);
+        return $this->getMapper()->getByBildschirmId($displayId);
     }
 
 
@@ -94,9 +111,48 @@ class Infoscript {
         return $this;
     }
 
+    // <editor-fold defaultstate="collapsed" desc="deprecated">
 
+    /**
+     * @deprecated
+     */
+    public function get($id){
 
+        return $this->getMapper()->findById($id);
+    }
 
+    /**
+     * @deprecated
+     */
+    public function getById($id) {
+
+        return $this->getMapper()->getById($id);
+    }
+
+    /**
+     * @deprecated
+     */
+    public function getByUserId($userId) {
+
+        return $this->getMapper()->getByUserId($userId);
+    }
+
+    /**
+     * @deprecated
+     */
+    public function getByBildschirmId($bildschirmId) {
+
+        return $this->getMapper()->getByBildschirmId($bildschirmId);
+    }
+
+    /**
+     * @deprecated
+     */
+    public function fetchAll(){
+
+        return $this->getMapper()->fetchAll();
+    }
+    // </editor-fold>
 
 }
 

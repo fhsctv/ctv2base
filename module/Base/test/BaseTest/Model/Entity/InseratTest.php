@@ -17,7 +17,7 @@ class InseratTest extends \PHPUnit_Framework_TestCase {
     public function setUp() {
         
         $this->sm = Bootstrap::getServiceManager();
-        $this->entity = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $this->entity = $this->sm->get(C::SM_ENTITY_INSERAT);
     }
     
     /**
@@ -27,7 +27,7 @@ class InseratTest extends \PHPUnit_Framework_TestCase {
     public function testNotShared(){
         
         $firstEntity  = $this->entity;
-        $secondEntity = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $secondEntity = $this->sm->get(C::SM_ENTITY_INSERAT);
         
         $this->assertSame($this->entity, $firstEntity);
         $this->assertNotSame($firstEntity, $secondEntity);
@@ -94,26 +94,26 @@ class InseratTest extends \PHPUnit_Framework_TestCase {
         
         $today = date('Y-m-d');
         
-        $inseratOutdated = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratOutdated = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratOutdated->setStart('2011-12-12')->setEnde('2012-12-13')->setAktiv(1);
         
-        $inseratFuture = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratFuture = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratFuture->setStart('2098-12-12')->setEnde('2099-12-13')->setAktiv(1);
         
         
-        $inseratCurrentActiveWithoutDisplays = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActiveWithoutDisplays = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratCurrentActiveWithoutDisplays->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1);
         
         
-        $inseratCurrentActive = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActive = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratCurrentActive->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1)->addBildschirm(1);
         
         
-        $inseratCurrentActiveToday = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActiveToday = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratCurrentActiveToday->setStart($today)->setEnde($today)->setAktiv(1)->addBildschirm(1);
         
         
-        $inseratCurrentInactive = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentInactive = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratCurrentInactive->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(0);
         
         
@@ -134,25 +134,25 @@ class InseratTest extends \PHPUnit_Framework_TestCase {
         
         $today = date('Y-m-d');
         
-        $inseratOutdated = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratOutdated = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratOutdated->setStart('2011-12-12')->setEnde('2012-12-13')->setAktiv(1);
         
-        $inseratFuture = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratFuture = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratFuture->setStart('2098-12-12')->setEnde('2099-12-13')->setAktiv(1);
         
-        $inseratCurrentActiveWithoutDisplays = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActiveWithoutDisplays = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratCurrentActiveWithoutDisplays->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1);
         
         
-        $inseratCurrentActiveWithOneDisplay = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActiveWithOneDisplay = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratCurrentActiveWithOneDisplay->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(1)->addBildschirm(1);
         
         
-        $inseratCurrentActiveToday = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentActiveToday = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratCurrentActiveToday->setStart($today)->setEnde($today)->setAktiv(1)->addBildschirm(1);
         
         
-        $inseratCurrentInactive = $this->sm->get(C::SERVICE_ENTITY_INSERAT);
+        $inseratCurrentInactive = $this->sm->get(C::SM_ENTITY_INSERAT);
         $inseratCurrentInactive->setStart('2012-12-12')->setEnde('2099-12-13')->setAktiv(0);
         
         
