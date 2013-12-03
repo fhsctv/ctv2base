@@ -24,21 +24,32 @@ class Column {
 
     /**
      *
+     * @var string
+     */
+    protected $list;
+
+    /**
+     * Das Infoscript, zu dem diese Spalte gehört.
      * @var \Base\Model\Entity\Infoscript
      */
     protected $infoscript;
+
+
 
     /**
      *
      * @param string $title
      * @param string $text
      */
-    public function __construct($title = null, $text = null, \Base\Model\Entity\Infoscript $infoscript = null) {
+    public function __construct($title = null, $text = null, $list = null, \Base\Model\Entity\Infoscript $infoscript = null) {
 
         $this->setInfoscript($infoscript);
         $this->setTitle($title);
         $this->setText($text);
+        $this->setList($list);
     }
+
+
 
     /**
      *
@@ -86,7 +97,6 @@ class Column {
     }
 
 
-
     /**
      *
      * @return string
@@ -108,6 +118,25 @@ class Column {
 
     /**
      *
+     * @return string
+     */
+    public function getList() {
+        return $this->list;
+    }
+
+    /**
+     *
+     * @param string $list
+     * @return \Base\Model\Entity\Infoscript\Column
+     */
+    public function setList($list) {
+        $this->list = $list;
+        return $this;
+    }
+
+
+    /**
+     *
      * @return \Base\Model\Entity\Infoscript
      */
     public function getInfoscript() {
@@ -121,12 +150,9 @@ class Column {
      */
     public function setInfoscript($infoscript) {
 
-        assert($infoscript instanceof \Base\Model\Entity\Infoscript || $infoscript === null, 'Falsches Argument in Methode' . __METHOD__);
+        assert($infoscript instanceof \Base\Model\Entity\Infoscript || $infoscript === null, 'Falsches Argument in Methode ' . __METHOD__);
 
         $this->infoscript = $infoscript;
         return $this;
     }
-
-
-
 }

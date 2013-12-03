@@ -102,12 +102,12 @@ class InfoscriptController extends AbstractActionController {
         $form = $this->getServiceLocator()->get(C::SERVICE_FORM_INFOSCRIPT);
         $form->bind($original);
 
+        $form->isValid();
+
         $changed = $service->createInfoscriptFromForm($form, $this->getRequest());
 
         if (!$changed) {
-            $viewModel = new ViewModel(['form' => $form]);
-
-            return $viewModel->setTemplate('/base/infoscript/edit');
+            return new ViewModel(['form' => $form]);
         }
 
         $service->save($changed);

@@ -24,9 +24,17 @@ class Infoscript extends Inserat {
 
     /**
      *
+     * @var string
+     */
+    protected $description;
+
+
+    /**
+     *
      * @var array
      */
     protected $pictures = [];
+
 
 
     /**
@@ -119,6 +127,37 @@ class Infoscript extends Inserat {
         return $this;
     }
 
+    /**
+     * Creates a new column and adds it to this entity.
+     * @param string $title Columntitle
+     * @param string $text Columntext
+     * @param string $list Columnlist
+     */
+    public function createColumn($title = null, $text = null, $list = null) {
+
+        $this->addColumn(new Infoscript\Column($title, $text, $list));
+
+        return $this;
+    }
+
+
+    /**
+     *
+     * @return string
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+    /**
+     *
+     * @param string $description
+     * @return \Base\Model\Entity\Infoscript
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+        return $this;
+    }
 
 
 

@@ -186,7 +186,9 @@ class Infoscript {
     public function save(Entity $infoscript){
 
 
+
         $inserat_id = $infoscript->getInseratId();
+
 
         //1. Inserat in Db (inserat) speichern und seine id speichern
         //2. Infoscript in Db (infoscript) speichern
@@ -261,8 +263,10 @@ class Infoscript {
 
         $hydrator = new \Base\Model\Hydrator\Infoscript\Column();
 
+
         if($column->hasId()) {
-            $this->getTgwColumns()->update($hydrator->extract($column));
+            var_dump($column->hasId());
+            $this->getTgwColumns()->update($hydrator->extract($column), 'infospalte.id = ' . $column->getId());
             return $column->getId();
         }
 
