@@ -68,13 +68,22 @@ abstract class Inserat extends Form\Form {
      */
     private $userId;
 
-    protected $submit;
+    use SubmitTrait;
 
 
 
     public function __construct($name = null) {
 
         parent::__construct($name);
+
+        $this->add($this->getInseratId());
+        $this->add($this->getUserId());
+        $this->add($this->getStart());
+        $this->add($this->getEnde());
+        $this->add($this->getUrl());
+        $this->add($this->getAktiv());
+
+        $this->add($this->getSubmit(), ['priority' => -999]);
 
     }
 
@@ -276,26 +285,4 @@ abstract class Inserat extends Form\Form {
 
 
 
-    public function getSubmit() {
-
-        if(empty($this->submit)){
-
-            $submit = new Form\Element\Submit('submit');
-            $submit->setAttribute('class', 'btn btn-default');
-            $submit->setValue('senden');
-
-            $this->setSubmit($submit);
-        }
-
-        return $this->submit;
-    }
-
-    public function setSubmit($submit) {
-        $this->submit = $submit;
-        return $this;
-    }
-
-
-
-
-    }
+}

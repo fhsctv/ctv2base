@@ -16,7 +16,7 @@ class Column implements HydratorInterface {
 
         $data = array(
             'id'  => $object->getId(),
-            'titel'       => $object->getTitle(),
+            'title'       => $object->getTitle(),
             'text'        => $object->getText(),
             'inserat_id'  => $object->getInfoscript()->getInseratId(),
 
@@ -31,7 +31,7 @@ class Column implements HydratorInterface {
     public function hydrate(array $data, $object) {
 
         (!isset($data['id'])    || $this->isEmpty($data['id']))    ? : $object->setId($data['id']);
-        (!isset($data['titel']) || $this->isEmpty($data['titel'])) ? : $object->setTitle($data['titel']);
+        (!isset($data['title']) || $this->isEmpty($data['title'])) ? : $object->setTitle($data['title']);
         (!isset($data['text'])  || $this->isEmpty($data['text']))  ? : $object->setText($data['text']);
 
 

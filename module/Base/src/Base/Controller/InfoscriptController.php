@@ -65,13 +65,70 @@ class InfoscriptController extends AbstractActionController {
 
     public function createAction() {
 
+        return $this->forward()->dispatch('Base\Controller\Infoscript', ['action' => 'select-template']);
+
+        // <editor-fold defaultstate="collapsed" desc="comment">
+
+//        $service = $this->getServiceLocator()->get(C::SERVICE_INFOSCRIPT);
+//        $form    = $this->getServiceLocator()->get(C::SM_FORM_INFOSCRIPT);
+//
+//        var_dump($this->getRequest()->getPost());
+//
+//        $infoscript = $service->createInfoscriptFromForm($form, $this->getRequest());
+////
+//        if (!$infoscript) {
+//            return new ViewModel(['form' => $form]);
+//        }
+//
+//        $service->save($infoscript);
+//
+//        $this->flashMessenger()->addSuccessMessage(self::MESSAGE_CREATE_SUCCESS);
+//        return $this->redirect()->toRoute(self::ROUTE,
+//        [
+//            'controller' => self::CONTROLLER,
+//            'action'     => self::ACTION_SHOW
+//        ]);
+        // </editor-fold>
+
+    }
+
+    public function selectTemplateAction() {
+
+        $actionUrls = new \ArrayObject(
+        [
+            'create' => new \ArrayObject(
+            [
+              'info'   => $this->url()->fromRoute('base/default', ['controller' => 'infoscript', 'action' => 'create-info']),
+              'table'  => $this->url()->fromRoute('base/default', ['controller' => 'infoscript', 'action' => 'create-table']),
+              'list'   => $this->url()->fromRoute('base/default', ['controller' => 'infoscript', 'action' => 'create-list']),
+              'bild'   => $this->url()->fromRoute('base/default', ['controller' => 'infoscript', 'action' => 'create-bild']),
+            ], \ArrayObject::ARRAY_AS_PROPS),
+        ], \ArrayObject::ARRAY_AS_PROPS);
+
+        return [
+
+            'actionUrls' => $actionUrls,
+
+        ];
+    }
+
+    public function createInfoAction() {
+
         $service = $this->getServiceLocator()->get(C::SERVICE_INFOSCRIPT);
         $form    = $this->getServiceLocator()->get(C::SM_FORM_INFOSCRIPT);
+        $form->setAttribute('action', $this->url()->fromRoute('base/default', ['controller' => self::CONTROLLER, 'action' => 'create-info']));
 
         $infoscript = $service->createInfoscriptFromForm($form, $this->getRequest());
 
         if (!$infoscript) {
-            return new ViewModel(['form' => $form]);
+            $previewWidget = $this->forward()->dispatch('Generator\Controller\Infoscript', ['action' => 'info']);
+
+            $viewModel = new ViewModel([
+                'form' => $form,
+            ]);
+            $viewModel->addChild($previewWidget, 'previewWidget');
+
+            return $viewModel;
         }
 
         $service->save($infoscript);
@@ -82,7 +139,31 @@ class InfoscriptController extends AbstractActionController {
             'controller' => self::CONTROLLER,
             'action'     => self::ACTION_SHOW
         ]);
+
     }
+
+    public function createListAction() {
+
+        var_dump('createList');
+    }
+
+    public function createImageAction() {
+
+        var_dump('createImage');
+    }
+
+    public function createTableAction() {
+
+        $previewWidget = $this->forward()->dispatch('Generator\Controller\Infoscript', ['action' => 'tabelle']);
+
+        $viewModel = new ViewModel();
+        $viewModel->addChild($previewWidget, 'previewWidget');
+
+        return $viewModel;
+    }
+
+
+
 
     public function editAction() {
 

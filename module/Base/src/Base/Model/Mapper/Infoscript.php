@@ -367,19 +367,20 @@ class Infoscript implements IMapper {
         }
     }
 
+    //:FIXME MAPPER SPEICHERT DIE SPALTEN NICHT AUS FORMULAR
+
     private function saveColums(\Base\Model\Entity\Infoscript $infoscript) {
 
         foreach ($infoscript->getColumns() as $column) {
             $this->saveColumn($column);
         }
-        }
+    }
 
     private function saveColumn(\Base\Model\Entity\Infoscript\Column $column) {
 
         $hydrator = new \Base\Model\Hydrator\Infoscript\Column();
 
         if ($column->hasId()) {
-            var_dump($column->hasId());
             $this->getTgwColumns()->update($hydrator->extract($column), ['infospalte.id' => $column->getId()]);
             return $column->getId();
         }
