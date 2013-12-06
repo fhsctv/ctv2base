@@ -122,6 +122,7 @@ class InfoscriptController extends AbstractActionController {
 
         if (!$infoscript) {
             $previewWidget = $this->forward()->dispatch('Generator\Controller\Infoscript', ['action' => 'info']);
+            $previewWidget->setTerminal(false);
 
             $viewModel = new ViewModel([
                 'form' => $form,
@@ -155,6 +156,7 @@ class InfoscriptController extends AbstractActionController {
     public function createTableAction() {
 
         $previewWidget = $this->forward()->dispatch('Generator\Controller\Infoscript', ['action' => 'tabelle']);
+        $previewWidget->setTerminal(false);
 
         $viewModel = new ViewModel();
         $viewModel->addChild($previewWidget, 'previewWidget');
