@@ -1,3 +1,4 @@
+
 <?php $this->headLink()->appendStylesheet('base/css/base.css'); ?>
 
 <form method="POST">
@@ -6,11 +7,10 @@
         <?php echo $this->widget; ?>
     </div>
 
-    <input type="submit" class="btn btn-success btn-lg" value="weiter">
-
+    <input type="submit" class="btn btn-success btn-lg" value="senden">
 </form>
 
 
 
 <?php $this->headScript()->appendFile('/js/tinymce/tinymce.min.js'); ?>
-<?php $this->headScript()->appendFile('/base/js/tinymce.js');        ?>
+<?php $this->headScript()->appendFile('/base/js/tinymce.js'); ?>

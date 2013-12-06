@@ -175,8 +175,9 @@ abstract class Inserat extends Form\Form {
 
         if(!$this->url){
 
-            $url = new Form\Element\Url('url');
-            $url->setLabel(self::LABEL_URL);
+            $url = new Form\Element\Hidden('url');
+//            $url->setLabel(self::LABEL_URL);
+            $url->setValue('-');
 
             $url->setAttribute('placeholder', 'Url des Inserats');
 

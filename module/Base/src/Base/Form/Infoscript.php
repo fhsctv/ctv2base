@@ -49,14 +49,14 @@ class Infoscript extends Inserat {
 
     /**
      *
-     * @return \Zend\Form\Element\Text
+     * @return \Zend\Form\Element\Hidden
      */
     public function getHeadline() {
 
         if(!$this->headline) {
 
-            $headline = new Form\Element\Text('headline');
-            $headline->setLabel('Kopfzeile: ');
+            $headline = new Form\Element\Hidden('headline');
+//            $headline->setLabel('Kopfzeile: ');
 
             $this->setHeadline($headline);
         }
@@ -66,10 +66,10 @@ class Infoscript extends Inserat {
 
     /**
      *
-     * @param \Zend\Form\Element\Text $headline
+     * @param \Zend\Form\Element\Hidden $headline
      * @return \Base\Form\Infoscript
      */
-    public function setHeadline(\Zend\Form\Element\Text $headline) {
+    public function setHeadline(\Zend\Form\ElementInterface $headline) {
         $this->headline = $headline;
         return $this;
     }
@@ -77,14 +77,14 @@ class Infoscript extends Inserat {
 
     /**
      *
-     * @return \Zend\Form\Element\Textarea
+     * @return \Zend\Form\Element\Hidden
      */
     public function getDescription() {
 
         if(!$this->description) {
 
-            $description = new Form\Element\Textarea('description');
-            $description->setLabel('Beschreibung: ');
+            $description = new Form\Element\Hidden('description');
+//            $description->setLabel('Beschreibung: ');
 
             $this->setDescription($description);
         }
@@ -94,15 +94,15 @@ class Infoscript extends Inserat {
 
     /**
      *
-     * @param \Zend\Form\Element\Textarea $description
+     * @param \Zend\Form\Element\Hidden $description
      * @return \Base\Form\Infoscript
      */
-    public function setDescription(\Zend\Form\Element\Textarea $description) {
+    public function setDescription(\Zend\Form\ElementInterface $description) {
         $this->description = $description;
         return $this;
     }
 
-    
+
     public function addColumn() {
 
         $column = new Infoscript\ColumnFieldset('column'.  count($this->columns));

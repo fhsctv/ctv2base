@@ -37,4 +37,22 @@ class IndexController extends AbstractActionController {
 
     }
 
+    public function jqueryAction() {
+
+        var_dump($this->getRequest()->getPost());
+
+        $infoscript = $this->getServiceLocator()->get(C::SM_ENTITY_INFOSCRIPT);
+        $infoscript->createColumn('Titel', 'Text', '');
+        $infoscript->setHeadline('Bitte Kopfzeilentext eingeben');
+
+        $widget = $this->forward()->dispatch('Generator/Controller/Infoscript', ['action' => 'info']);
+        $widget->setTerminal(false);
+        $viewModel = new ViewModel([
+            'infoscript' => $infoscript,
+        ]);
+        $viewModel->addChild($widget, 'widget');
+
+        return $viewModel;
+    }
+
 }

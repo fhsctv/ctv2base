@@ -43,8 +43,8 @@ class Infoscript extends Inserat {
 
         $object = parent::hydrate($data, $object);
 
-        $this->isEmpty($data['headline'])      ? : $object->setHeadline($data['headline']);
-        $this->isEmpty($data['description'])   ? : $object->setDescription($data['description']);
+        !isset($data['headline'])    ?  : $this->isEmpty($data['headline'])      ? : $object->setHeadline($data['headline']);
+        !isset($data['description']) ?  : $this->isEmpty($data['description'])   ? : $object->setDescription($data['description']);
 
         foreach($data as $key => $value){
 

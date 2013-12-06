@@ -59,16 +59,16 @@ class Inserat implements IEntity {
      */
     private $userId;
 
-    public function getInseratId() {
+    public function getId() {
 
         return $this->inseratId;
     }
 
-    public function setInseratId($inseratId) {
+    public function setId($id) {
 
-        assert(is_numeric($inseratId), __METHOD__ . ": Id muss eine Zahl sein.");
+        assert(is_numeric($id), __METHOD__ . ": Id muss eine Zahl sein.");
 
-        $this->inseratId = (int) $inseratId;
+        $this->inseratId = (int) $id;
         return $this;
     }
 
@@ -187,5 +187,25 @@ class Inserat implements IEntity {
             return self::STATUS_AKTIV;
         }
 
+    }
+
+
+    /**
+     * @deprecated use getId instead
+     * @return int
+     */
+    public function getInseratId() {
+
+        return $this->getId();
+    }
+
+    /**
+     * @deprecated use setId instead
+     * @param int $inseratId
+     * @return Base\Model\Entity\Inserat
+     */
+    public function setInseratId($inseratId) {
+
+        return $this->setId($inseratId);
     }
 }

@@ -23,7 +23,7 @@ class Infoscript {
      */
     public function createInfoscriptFromForm(Form $form, Request $request) {
 
-        if(!$request->isPost()){
+        if(!$request->isPost() || !$request->getPost('user_id')){
             return false;
         }
 
@@ -82,9 +82,7 @@ class Infoscript {
 
     public function save(Entity $infoscript) {
 
-        $this->getMapper()->save($infoscript);
-
-        return true;
+        return $this->getMapper()->save($infoscript);
     }
 
     public function delete(Entity $infoscript, Request $request, $flashMessenger){

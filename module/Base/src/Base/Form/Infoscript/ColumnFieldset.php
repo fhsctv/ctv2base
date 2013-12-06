@@ -24,12 +24,6 @@ class ColumnFieldset extends Form\Fieldset {
      */
     protected $text;
 
-    /**
-     *
-     * @var \Zend\Form\Element\Textarea
-     */
-    protected $list;
-
 
     use \Base\Form\ClassAttributesTrait;
 
@@ -43,7 +37,6 @@ class ColumnFieldset extends Form\Fieldset {
 
         $this->add($this->getTitle());
         $this->add($this->getText());
-        $this->add($this->getList());
 
         $this->setClassAttributes();
 
@@ -52,14 +45,14 @@ class ColumnFieldset extends Form\Fieldset {
 
     /**
      *
-     * @return \Zend\Form\Element\Text
+     * @return \Zend\Form\ElementInterface
      */
     public function getTitle() {
 
         if(!$this->title) {
 
-            $title = new Form\Element\Text('title');
-            $title->setLabel('Titel:');
+            $title = new \Zend\Form\Element\Hidden('title');
+//            $title->setLabel('Titel:');
 
             $this->setTitle($title);
         }
@@ -72,7 +65,7 @@ class ColumnFieldset extends Form\Fieldset {
      * @param \Zend\Form\Element\Text $title
      * @return \Base\Form\ColumnFieldset
      */
-    public function setTitle(\Zend\Form\Element\Text $title) {
+    public function setTitle(\Zend\Form\ElementInterface $title) {
         $this->title = $title;
         return $this;
     }
@@ -81,14 +74,14 @@ class ColumnFieldset extends Form\Fieldset {
 
     /**
      *
-     * @return \Zend\Form\Element\Textarea
+     * @return \Zend\Form\Element\ElementInterface
      */
     public function getText() {
 
         if(!$this->text) {
 
-            $text = new Form\Element\Textarea('text');
-            $text->setLabel('Text:');
+            $text = new Form\Element\Hidden('text');
+//            $text->setLabel('Text:');
 
             $this->setText($text);
         }
@@ -101,37 +94,8 @@ class ColumnFieldset extends Form\Fieldset {
      * @param \Zend\Form\Element\Textarea $text
      * @return \Base\Form\ColumnFieldset
      */
-    public function setText(\Zend\Form\Element\Textarea $text) {
+    public function setText(\Zend\Form\ElementInterface $text) {
         $this->text = $text;
-        return $this;
-    }
-
-
-
-    /**
-     *
-     * @return \Zend\Form\Element\Textarea
-     */
-    public function getList() {
-
-        if(!$this->list) {
-
-            $list = new Form\Element\Textarea('list');
-            $list->setLabel('Liste:');
-
-            $this->setList($list);
-        }
-
-        return $this->list;
-    }
-
-    /**
-     *
-     * @param \Zend\Form\Element\Textarea $list
-     * @return \Base\Form\ColumnFieldset
-     */
-    public function setList(\Zend\Form\Element\Textarea $list) {
-        $this->list = $list;
         return $this;
     }
 

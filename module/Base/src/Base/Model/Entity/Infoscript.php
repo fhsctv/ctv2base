@@ -11,16 +11,9 @@ class Infoscript extends Inserat {
     protected $headLine;
 
     /**
-     *
      * @var array
      */
     protected $columns = [];
-
-    /**
-     *
-     * @var string
-     */
-    protected $list;
 
     /**
      *
@@ -133,9 +126,9 @@ class Infoscript extends Inserat {
      * @param string $text Columntext
      * @param string $list Columnlist
      */
-    public function createColumn($title = null, $text = null, $list = null) {
+    public function createColumn($title = null, $text = null) {
 
-        $this->addColumn(new Infoscript\Column($title, $text, $list));
+        $this->addColumn(new Infoscript\Column($title, $text));
 
         return $this;
     }
@@ -158,27 +151,6 @@ class Infoscript extends Inserat {
         $this->description = $description;
         return $this;
     }
-
-
-
-    /**
-     *
-     * @return string
-     */
-    public function getList() {
-        return $this->list;
-    }
-
-    /**
-     *
-     * @param string $list
-     * @return \Base\Model\Entity\Infoscript
-     */
-    public function setList($list) {
-        $this->list = $list;
-        return $this;
-    }
-
 
 
     /**

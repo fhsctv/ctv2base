@@ -23,12 +23,6 @@ class Column {
     protected $text;
 
     /**
-     *
-     * @var string
-     */
-    protected $list;
-
-    /**
      * Das Infoscript, zu dem diese Spalte gehört.
      * @var \Base\Model\Entity\Infoscript
      */
@@ -41,12 +35,10 @@ class Column {
      * @param string $title
      * @param string $text
      */
-    public function __construct($title = null, $text = null, $list = null, \Base\Model\Entity\Infoscript $infoscript = null) {
+    public function __construct($title = null, $text = null) {
 
-        $this->setInfoscript($infoscript);
         $this->setTitle($title);
         $this->setText($text);
-        $this->setList($list);
     }
 
 
@@ -112,25 +104,6 @@ class Column {
      */
     public function setText($text) {
         $this->text = $text;
-        return $this;
-    }
-
-
-    /**
-     *
-     * @return string
-     */
-    public function getList() {
-        return $this->list;
-    }
-
-    /**
-     *
-     * @param string $list
-     * @return \Base\Model\Entity\Infoscript\Column
-     */
-    public function setList($list) {
-        $this->list = $list;
         return $this;
     }
 
